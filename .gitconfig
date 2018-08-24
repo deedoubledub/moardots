@@ -1,0 +1,7 @@
+[user]
+  name  = David Wagner
+  email = dwagner86@gmail.com
+[push]
+  default = simple
+[core]
+  excludesfiles = ~/.gitignore_global
