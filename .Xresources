@@ -1,6 +1,6 @@
-!- - - - - - - - - - - - - - - - - - - - - - - - !
-!                                 URxvt settings !
-!- - - - - - - - - - - - - - - - - - - - - - - - !
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
+!                                     URxvt settings !
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
 
 URxvt.internalBorder:      5
 URxvt.externalBorder:      5
@@ -23,12 +23,17 @@ URxvt.secondaryScroll:     false
 URxvt.iso14755:            false
 URxvt.iso14755_52:         false
 
-!! Fonts
-URxvt.font:                xft:Roboto Mono:size=10
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
+!                                              fonts !
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
+#define myfont             Roboto Mono
+#define myfontsize         10
 
-!- - - - - - - - - - - - - - - - - - - - - - - - !
-!                                      Solarized !
-!- - - - - - - - - - - - - - - - - - - - - - - - !
+URxvt.font:                xft:myfont:size=myfontsize
+
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
+!                                          solarized !
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
 
 ! Common
 #define S_yellow           #b58900
