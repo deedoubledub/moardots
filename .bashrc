@@ -8,6 +8,14 @@ export EDITOR=vim
 [[ $- != *i* ]] && return
 
 #- - - - - - - - - - - - -#
+#                 general #
+#- - - - - - - - - - - - -#
+
+eval `dircolors ~/.dircolors`
+
+[[ -f ~/.bashrc ]] && . ~/.alias
+
+#- - - - - - - - - - - - -#
 #                  prompt #
 #- - - - - - - - - - - - -#
 
