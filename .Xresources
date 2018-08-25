@@ -27,7 +27,7 @@ URxvt.iso14755_52:         false
 !                                              fonts !
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 #define myfont             Roboto Mono
-#define myfontsize         10
+#define myfontsize         11
 
 URxvt.font:                xft:myfont:size=myfontsize
 
