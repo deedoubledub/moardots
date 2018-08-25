@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if command -v lsb_release >/dev/null 2>&1; then
+  if [ `lsb_release -i | awk '{print $3}'` == 'Ubuntu' ]; then
+    echo "Installing applications..."
+    sudo apt-get update
+    sudo apt-get install rxvt-unicode vim tmux
+  fi
+fi
+
+if command -v vim >/dev/null 2>&1; then
+  echo "Bootstrapping vim plugins..."
+  vim '+PlugUpdate' '+qall'
+fi
