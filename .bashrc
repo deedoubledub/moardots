@@ -13,7 +13,7 @@ export EDITOR=vim
 
 eval `dircolors ~/.dircolors`
 
-[[ -f ~/.bashrc ]] && . ~/.alias
+[[ -f ~/.alias ]] && . ~/.alias
 
 #- - - - - - - - - - - - -#
 #                  prompt #
