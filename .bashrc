@@ -21,6 +21,9 @@ eval `dircolors ~/.dircolors`
 # aliases
 [[ -f ~/.alias ]] && . ~/.alias
 
+# completion
+[[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+
 # set caps-lock as another ctrl
 setxkbmap -option ctrl:nocaps
 
