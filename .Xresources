@@ -2,8 +2,8 @@
 !                                     URxvt settings !
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 
-URxvt.internalBorder:      5
-URxvt.externalBorder:      5
+URxvt.internalBorder:      2
+URxvt.externalBorder:      0
 URxvt.saveLines:           10000
 URxvt.geometry:            96x30
 

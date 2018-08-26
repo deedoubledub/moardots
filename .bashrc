@@ -4,6 +4,7 @@
 
 export TERM=rxvt-unicode-256color
 export EDITOR=vim
+export TERMINAL=urxvt
 
 #- - - - - - - - - - - - - - - - - - -#
 #                             general #

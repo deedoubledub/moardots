@@ -4,11 +4,28 @@ if command -v lsb_release >/dev/null 2>&1; then
   if [ `lsb_release -i | awk '{print $3}'` == 'Ubuntu' ]; then
     echo "Installing applications..."
     sudo apt-get update
-    sudo apt-get install rxvt-unicode vim tmux neofetch
+    sudo apt-get install -y \
+      rxvt-unicode vim tmux neofetch \
+      feh arandr compton i3status i3lock rofi imagemagick \
+      libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+      libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+      libstartup-notification0-dev libxcb-randr0-dev \
+      libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
+      libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
+      autoconf libxcb-xrm0 libxcb-xrm-dev automake
   fi
 fi
 
 if command -v vim >/dev/null 2>&1; then
   echo "Bootstrapping vim plugins..."
   vim '+PlugUpdate' '+qall'
+fi
+
+if ! command -v i3 >/dev/null 2>&1; then
+  echo "i3 not installed!"
+else
+  if ! i3 -v | grep gaps >/dev/null 2>&1; then
+    echo "i3 missing gaps support!"
+    echo "https://github.com/Airblader/i3"
+  fi
 fi
