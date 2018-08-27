@@ -26,7 +26,7 @@ URxvt.iso14755_52:         false
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 !                                              fonts !
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
-#define myfont             Roboto Mono
+#define myfont             RobotoMono Nerd Font
 #define myfontsize         11
 
 URxvt.font:                xft:myfont:size=myfontsize
