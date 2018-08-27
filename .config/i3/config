@@ -156,13 +156,13 @@ gaps inner 10
 gaps outer 0
 
 # wallpaper
-exec_always feh --bg-fill ~/.wallpaper/active
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper/active
 
 # lock screen
-exec "convert ~/.wallpaper/active -gravity Center -extent `xdpyinfo | awk '/dimensions/{print $2}'` /tmp/lockscreen.png"
+exec --no-startup-id "convert ~/.wallpaper/active -gravity Center -extent `xdpyinfo | awk '/dimensions/{print $2}'` /tmp/lockscreen.png"
 bindsym $super+l exec i3lock -i /tmp/lockscreen.png
 
 # startup applications
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec compton -f
-exec nm-applet
+exec --no-startup-id compton -f
+exec --no-startup-id nm-applet
