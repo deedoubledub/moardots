@@ -2,7 +2,7 @@
 
 if command -v lsb_release >/dev/null 2>&1; then
   if [ `lsb_release -i | awk '{print $3}'` == 'Ubuntu' ]; then
-    echo "Installing applications..."
+    echo "Installing applications and build dependencies..."
     sudo apt-get update
     sudo apt-get install -y \
       rxvt-unicode vim tmux neofetch \
@@ -12,7 +12,11 @@ if command -v lsb_release >/dev/null 2>&1; then
       libstartup-notification0-dev libxcb-randr0-dev \
       libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
       libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-      autoconf libxcb-xrm0 libxcb-xrm-dev automake
+      autoconf libxcb-xrm0 libxcb-xrm-dev automake \
+      cmake cmake-data pkg-config libcairo2-dev \
+      python-xcbgen xcb-proto libxcb-image0-dev \
+      libxcb-ewmh-dev libpulse-dev libjsoncpp-dev \
+      libmpdclient-dev libcurl4-openssl-dev libnl-3-dev
   fi
 fi
 
@@ -28,4 +32,9 @@ else
     echo "i3 missing gaps support!"
     echo "https://github.com/Airblader/i3"
   fi
+fi
+
+if ! command -v polybar >/dev/null 2>&1; then
+  echo "polybar not installed"
+  echo "https://github.com/jaagr/polybar/wiki/Compiling"
 fi
