@@ -178,7 +178,6 @@ format-discharging-underline = ${colors.red}
 
 label-full = %percentage%%
 format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${colors.green}
 
 ramp-capacity-0 = ""
