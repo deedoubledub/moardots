@@ -29,6 +29,18 @@ eval `dircolors ~/.dircolors`
 setxkbmap -option ctrl:nocaps
 
 #- - - - - - - - - - - - - - - - - - -#
+#                            ssh keys #
+#- - - - - - - - - - - - - - - - - - -#
+
+# add all private keys found in ~/.ssh
+for filename in ~/.ssh/*; do
+  type=`file "$filename" | awk -F ": " '{print $2}'`
+  if [[ $type == "PEM RSA private key" ]]; then
+    ssh-add $filename >/dev/null 2>&1
+  fi
+done
+
+#- - - - - - - - - - - - - - - - - - -#
 #                              prompt #
 #- - - - - - - - - - - - - - - - - - -#
 
