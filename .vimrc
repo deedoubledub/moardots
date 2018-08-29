@@ -47,7 +47,13 @@ set shiftwidth=2
 set expandtab
 
 " line numbers
-set number
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
+
+augroup END
 
 " spell check
 set spell spelllang=en_us
