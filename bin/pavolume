@@ -1,0 +1,20 @@
+#!/bin/bash
+# adjusts the volume of the active pulse audio sink
+
+active=`pacmd list-sinks | awk '/\* index:/ {print $3}'`
+
+case "$1" in
+  "up")
+    pactl set-sink-volume $active +5%
+    ;;
+  "down")
+    pactl set-sink-volume $active -5%
+    ;;
+  "mute")
+    pactl set-sink-mute $active toggle
+    ;;
+  *)
+    echo 'usage: pavolume [ up | down | mute ]'
+    exit 1
+    ;;
+esac
