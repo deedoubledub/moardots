@@ -165,8 +165,8 @@ bindsym $super+l exec --no-startup-id i3lock-fancy
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id compton -f
 exec --no-startup-id nm-applet
-exec --no-startup-id slack --start-minimized'
-exec --no-startup-id discord --start-minimized'
+exec --no-startup-id slack
+exec --no-startup-id discord --start-minimized
 
 # media keys
 bindsym XF86AudioRaiseVolume exec --no-startup-id pavolume up
