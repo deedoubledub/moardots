@@ -111,7 +111,8 @@ port = 6600
 
 format-online = <toggle> <label-song>
 format-offline =
-format-online-underline = ${colors.blue}
+format-playing-underline = ${colors.green}
+format-paused-underline = ${colors.yellow}
 label-song = %artist% - %title:0:30:...%
 icon-play = ""
 icon-pause = "契"
