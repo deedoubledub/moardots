@@ -1,0 +1,6 @@
+rofi.theme: solarized
+rofi.font: Roboto Mono 18
+rofi.show-icons: true
+rofi.lines: 5
+rofi.modi: drun
+rofi.display-drun: run
