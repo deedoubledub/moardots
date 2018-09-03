@@ -7,7 +7,7 @@ if command -v lsb_release >/dev/null 2>&1; then
     sudo apt-get install -y \
       rxvt-unicode vim tmux neofetch \
       feh arandr compton i3status i3lock-fancy rofi imagemagick \
-      ncmpcpp \
+      ncmpcpp xautolock \
       libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
       libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
       libstartup-notification0-dev libxcb-randr0-dev \
