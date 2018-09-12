@@ -160,7 +160,7 @@ exec_always --no-startup-id feh --bg-fill ~/.wallpaper/active
 
 # lock screen
 bindsym $super+l exec --no-startup-id i3lock-fancy
-exec --no-startup-id xautolock -time 10 -locker i3lock-fancy
+exec --no-startup-id xautolock -time 60 -locker i3lock-fancy
 
 # startup applications
 exec_always --no-startup-id ~/.config/polybar/launch.sh
