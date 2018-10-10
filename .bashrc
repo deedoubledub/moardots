@@ -33,6 +33,9 @@ setxkbmap -option ctrl:nocaps
 #                            ssh keys #
 #- - - - - - - - - - - - - - - - - - -#
 
+# ssh-agent setup
+eval $(ssh-agent) >/dev/null 2>&1
+
 # add all private keys found in ~/.ssh
 for filename in ~/.ssh/*; do
   type=`file "$filename" | awk -F ": " '{print $2}'`
