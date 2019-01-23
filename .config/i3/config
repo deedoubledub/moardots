@@ -163,6 +163,7 @@ exec --no-startup-id xautolock -time 60 -locker i3lock-fancy
 
 # screen blanking timeout
 exec --no-startup-id xset s 3600
+exec --no-startup-id xset dpms 3600 3600 3600
 
 # startup applications
 exec_always --no-startup-id ~/.config/polybar/launch.sh
