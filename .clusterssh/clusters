@@ -10,4 +10,4 @@ staff csadmin@aldenv110.allegheny.edu csadmin@aldenv111.allegheny.edu csadmin@al
 
 servers csadmin@foreman.cs.allegheny.edu csadmin@aptly.cs.allegheny.edu csadmin@monitor.cs.allegheny.edu csadmin@openldap.cs.allegheny.edu csadmin@gitlab.cs.allegheny.edu csadmin@x2go.cs.allegheny.edu csadmin@backup.cs.allegheny.edu csadmin@www.cs.allegheny.edu csadmin@nfs1.cs.allegheny.edu csadmin@ganeti1.cs.allegheny.edu csadmin@ganeti2.cs.allegheny.edu
 
-deedoubledub dwagner@foreman.deedoubledub.com dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com dwagner@bitwarden.deedoubledub.com dwagner@cloud.deedoubledub.com
+deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com dwagner@bitwarden.deedoubledub.com
