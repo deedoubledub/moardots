@@ -29,6 +29,9 @@ eval `dircolors ~/.dircolors`
 # set caps-lock as another ctrl
 setxkbmap -option ctrl:nocaps
 
+# enables autocd, interpret dir_name as cd dir_name
+shopt -s autocd
+
 #- - - - - - - - - - - - - - - - - - -#
 #                            ssh keys #
 #- - - - - - - - - - - - - - - - - - -#
