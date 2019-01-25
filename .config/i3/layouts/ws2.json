@@ -1,0 +1,11 @@
+{
+    "name": "urxvt",
+    "percent": 1,
+    "type": "con",
+    "swallows": [
+       {
+       "class": "^URxvt$"
+       }
+    ]
+}
+

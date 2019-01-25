@@ -169,11 +169,16 @@ exec --no-startup-id xautolock -time 60 -locker i3lock-fancy
 exec --no-startup-id xset s 3600
 exec --no-startup-id xset dpms 3600 3600 3600
 
+# startup layout
+exec --no-startup-id "i3-msg 'workspace 3; append_layout ~/.config/i3/layouts/ws3.json'"
+exec --no-startup-id "i3-msg 'workspace 2; append_layout ~/.config/i3/layouts/ws2.json'"
+exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/layouts/ws1.json'"
+
 # startup applications
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id compton -f
 exec --no-startup-id nm-applet
-exec --no-startup-id slack
+exec --no-startup-id slack -u
 exec --no-startup-id discord --start-minimized
 
 # media keys
