@@ -23,6 +23,9 @@ set $rofi "rofi -show drun"
 bindsym $mod+d exec $rofi
 bindsym $super+space exec $rofi
 
+# start ranger
+bindsym $mod+o exec i3-sensible-terminal -e ranger
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
