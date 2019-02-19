@@ -4,8 +4,9 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
-Plug 'spf13/vim-autoclose'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'rstacruz/vim-closer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -25,9 +26,6 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " toggle on ctrl+n
 nnoremap <C-n> :NERDTreeToggle<CR>
-
-"" vim-autoclose
-let g:autoclose_vim_commentmode=1
 
 "" vim-airline
 set noshowmode
