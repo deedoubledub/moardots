@@ -62,3 +62,7 @@ set incsearch
 set ignorecase
 set smartcase
 nnoremap <C-h> :nohlsearch<CR>
+
+" syntax highlighting
+" yaml syntax in eyaml
+au BufReadPost *.eyaml set filetype=yaml
