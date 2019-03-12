@@ -1,4 +1,4 @@
-#!/bin/bash
+#/bin/bash
 
 if command -v lsb_release >/dev/null 2>&1; then
   if [ `lsb_release -i | awk '{print $3}'` == 'Ubuntu' ]; then
@@ -38,4 +38,9 @@ fi
 if ! command -v polybar >/dev/null 2>&1; then
   echo "polybar not installed"
   echo "https://github.com/jaagr/polybar/wiki/Compiling"
+fi
+
+if ! command -v i3lock-color >/dev/null 2>&1; then
+  echo "i3lock-color not installed"
+  echo "https://github.com/PandorasFox/i3lock-color"
 fi
