@@ -40,7 +40,16 @@ set -o vi
 #- - - - - - - - - - - - - - - - - - -#
 
 # ssh-agent setup
-eval $(ssh-agent) >/dev/null 2>&1
+if [ -f ~/.ssh/agent.env ] ; then
+  . ~/.ssh/agent.env > /dev/null
+  if ! kill -0 $SSH_AGENT_PID > /dev/null 2>&1; then
+    # stale agent, start a new one
+    eval `ssh-agent | tee ~/.ssh/agent.env` > /dev/null 2>&1
+  fi
+else
+  # start an agent
+  eval `ssh-agent | tee ~/.ssh/agent.env` > /dev/null 2>&1
+fi
 
 # add all private keys found in ~/.ssh
 for filename in ~/.ssh/*; do
