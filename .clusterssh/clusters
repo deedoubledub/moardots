@@ -4,6 +4,8 @@ staff csadmin@aldenv173.allegheny.edu csadmin@aldenv174.allegheny.edu csadmin@al
 
 servers csadmin@foreman.cs.allegheny.edu csadmin@aptly.cs.allegheny.edu csadmin@monitor.cs.allegheny.edu csadmin@openldap.cs.allegheny.edu csadmin@gitlab.cs.allegheny.edu csadmin@backup.cs.allegheny.edu csadmin@www.cs.allegheny.edu csadmin@nfs1.cs.allegheny.edu csadmin@ganeti1.cs.allegheny.edu csadmin@ganeti2.cs.allegheny.edu csadmin@guacamole.cs.allegheny.edu csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu csadmin@remote3.cs.allegheny.edu csadmin@remote4.cs.allegheny.edu csadmin@remote5.cs.allegheny.edu
 
+remote csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu csadmin@remote3.cs.allegheny.edu csadmin@remote4.cs.allegheny.edu csadmin@remote5.cs.allegheny.edu
+
 ovirt root@ovirt1.cs.allegheny.edu root@ovirt2.cs.allegheny.edu root@ovirt3.cs.allegheny.edu
 
 deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com dwagner@bitwarden.deedoubledub.com
