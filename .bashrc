@@ -35,6 +35,9 @@ shopt -s autocd
 # enables vi mode
 set -o vi
 
+# gam setup
+gam() { "~/bin/gam/gam" "$@" ; }
+
 #- - - - - - - - - - - - - - - - - - -#
 #                            ssh keys #
 #- - - - - - - - - - - - - - - - - - -#
