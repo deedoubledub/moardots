@@ -36,7 +36,7 @@ shopt -s autocd
 set -o vi
 
 # gam setup
-gam() { "~/bin/gam/gam" "$@" ; }
+gam() { "$HOME/bin/gam/gam" "$@" ; }
 
 #- - - - - - - - - - - - - - - - - - -#
 #                            ssh keys #
