@@ -30,8 +30,9 @@ red = #f90000
 blue = #0a6cf5
 
 [bar/mybar]
+dpi = 160
 width = 100%
-height = 27
+height = 36
 fixed-center = true
 
 background = ${colors.background}
@@ -57,7 +58,7 @@ modules-right = memory cpu battery0 battery1 pulseaudio
 
 tray-position = right
 tray-padding = 8
-tray-maxsize = 24
+tray-maxsize = 36
 
 cursor-click = pointer
 cursor-scroll = ns-resize

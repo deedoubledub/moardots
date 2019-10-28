@@ -32,6 +32,12 @@ URxvt.iso14755_52:         false
 URxvt.font:                xft:myfont:size=myfontsize
 
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
+!                                            scaling !
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
+Xft.dpi: 160
+rofi.dpi: 160
+
+!- - - - - - - - - - - - - - - - - - - - - - - - - - !
 !                                          solarized !
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 
