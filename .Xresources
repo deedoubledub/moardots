@@ -34,8 +34,8 @@ URxvt.font:                xft:myfont:size=myfontsize
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 !                                            scaling !
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
-Xft.dpi: 160
-rofi.dpi: 160
+!Xft.dpi: 160
+!rofi.dpi: 160
 
 !- - - - - - - - - - - - - - - - - - - - - - - - - - !
 !                                          solarized !
