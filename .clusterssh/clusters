@@ -10,6 +10,6 @@ servers csadmin@foreman.cs.allegheny.edu csadmin@aptly.cs.allegheny.edu csadmin@
 
 remote csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu csadmin@remote3.cs.allegheny.edu csadmin@remote4.cs.allegheny.edu csadmin@remote5.cs.allegheny.edu
 
-ovirt root@ovirt1.cs.allegheny.edu root@ovirt2.cs.allegheny.edu root@ovirt3.cs.allegheny.edu
+openstack csadmin@virt1.cs.allegheny.edu csadmin@virt2.cs.allegheny.edu csadmin@virt3.cs.allegheny.edu csadmin@virt4.cs.allegheny.edu
 
 deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com dwagner@bitwarden.deedoubledub.com
