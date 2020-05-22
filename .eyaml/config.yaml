@@ -1,3 +1,3 @@
 ---
-pkcs7_private_key: '/home/d/dwagner/.eyaml/keys/private_key.pkcs7.pem'
-pkcs7_public_key: '/home/d/dwagner/.eyaml/keys/public_key.pkcs7.pem'
+pkcs7_private_key: '/home/dwagner/.eyaml/keys/private_key.pkcs7.pem'
+pkcs7_public_key: '/home/dwagner/.eyaml/keys/public_key.pkcs7.pem'
