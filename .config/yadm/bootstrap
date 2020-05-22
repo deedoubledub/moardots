@@ -1,46 +1,124 @@
 #/bin/bash
 
-if command -v lsb_release >/dev/null 2>&1; then
-  if [ `lsb_release -i | awk '{print $3}'` == 'Ubuntu' ]; then
-    echo "Installing applications and build dependencies..."
-    sudo apt-get update
-    sudo apt-get install -y \
-      rxvt-unicode vim tmux neofetch \
-      feh arandr compton i3status i3lock-fancy rofi imagemagick \
-      ncmpcpp xautolock dunst arc-theme numlockx ranger \
-      libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-      libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
-      libstartup-notification0-dev libxcb-randr0-dev \
-      libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
-      libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-      autoconf libxcb-xrm0 libxcb-xrm-dev automake \
-      cmake cmake-data pkg-config libcairo2-dev \
-      python-xcbgen xcb-proto libxcb-image0-dev \
-      libxcb-ewmh-dev libpulse-dev libjsoncpp-dev \
-      libmpdclient-dev libcurl4-openssl-dev libnl-3-dev
-  fi
-fi
-
-if command -v vim >/dev/null 2>&1; then
-  echo "Bootstrapping vim plugins..."
-  vim '+PlugUpdate' '+qall'
-fi
-
-if ! command -v i3 >/dev/null 2>&1; then
-  echo "i3 not installed!"
+# Detect the distribution version
+# example: $NAME $VERSION_ID == Ubuntu 20.04
+if [ -f /etc/os-release ]; then
+  . /etc/os-release
 else
-  if ! i3 -v | grep gaps >/dev/null 2>&1; then
-    echo "i3 missing gaps support!"
-    echo "https://github.com/Airblader/i3"
+  echo "Unable to determine the distribution, exiting."
+fi
+
+# install missing applications
+# - terminal
+# -- alacritty
+if ! command -v alacritty >/dev/null 2>&1; then
+  echo "Installing alacritty..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo add-apt-repository ppa:mmstick76/alacritty
+    sudo apt update
+    sudo apt install -y alacritty
   fi
 fi
 
-if ! command -v polybar >/dev/null 2>&1; then
-  echo "polybar not installed"
-  echo "https://github.com/jaagr/polybar/wiki/Compiling"
+# -- tmux
+if ! command -v tmux >/dev/null 2>&1; then
+  echo "Installing tmux..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y tmux
+  fi
 fi
 
-if ! command -v i3lock-color >/dev/null 2>&1; then
-  echo "i3lock-color not installed"
-  echo "https://github.com/PandorasFox/i3lock-color"
+# -- ncurses-term (extra $TERM defs)
+if [ ! -f /usr/share/terminfo/a/alacritty ]; then
+  echo "Installing ncurses-term..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y ncurses-term
+  fi
+fi
+
+# -- clusterssh
+if ! command -v cssh >/dev/null 2>&1; then
+  echo "Installing ClusterSSH..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y clusterssh
+  fi
+fi
+
+# - editors
+# -- vim
+if ! command -v vim >/dev/null 2>&1; then
+  echo "Installing vim..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y vim
+  fi
+fi
+
+if [ $NAME == "Ubuntu" ]; then
+  if vim --version | grep "Small version without GUI" >/dev/null 2>&1; then
+    echo "vim-tiny found, installing the real vim..."
+    sudo apt install -y vim
+  fi
+fi
+
+# - wm
+# -- qtile
+# TODO
+
+# - display tools
+# -- feh
+if ! command -v feh >/dev/null 2>&1; then
+  echo "Installing feh..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y feh
+  fi
+fi
+
+
+# -- arandr
+if ! command -v arandr >/dev/null 2>&1; then
+  echo "Installing arandr..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y arandr
+  fi
+fi
+
+# -- picom
+# TODO
+
+# -- xautolock
+if ! command -v xautolock >/dev/null 2>&1; then
+  echo "Installing xautolock..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y xautolock
+  fi
+fi
+
+# -- screen locker
+# TODO
+
+# - launcher, notifications, misc
+# -- rofi
+if ! command -v rofi >/dev/null 2>&1; then
+  echo "Installing rofi..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y rofi
+  fi
+fi
+
+# -- dunst
+if ! command -v dunst >/dev/null 2>&1; then
+  echo "Installing dunst..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y dunst
+  fi
+fi
+
+# install fonts
+echo "Updating font cache..."
+fc-cache -fv
+
+# configure applications
+if command -v vim >/dev/null 2>&1; then
+  echo "Installing vim plugins..."
+  vim '+PlugUpdate' '+qall'
 fi
