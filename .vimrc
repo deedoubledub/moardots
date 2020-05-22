@@ -9,6 +9,7 @@ Plug 'tpope/vim-endwise'
 Plug 'rstacruz/vim-closer'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'skammer/vim-css-color'
 call plug#end()
 
 "" vim-gitgutter
@@ -50,8 +51,11 @@ augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
-
 augroup END
+
+" cursorline
+set cursorline
+:hi CursorLineNr cterm=bold
 
 " spell check
 set spell spelllang=en_us
