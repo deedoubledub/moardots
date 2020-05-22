@@ -2,9 +2,8 @@
 #                           variables #
 #- - - - - - - - - - - - - - - - - - -#
 
-export TERM=rxvt-256color
 export EDITOR=vim
-export TERMINAL=urxvt
+export TERMINAL=alacritty
 export PATH=$PATH:~/bin
 
 #- - - - - - - - - - - - - - - - - - -#
