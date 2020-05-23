@@ -60,6 +60,14 @@ if [ $NAME == "Ubuntu" ]; then
   fi
 fi
 
+# -- neovim
+if ! command -v nvim >/dev/null 2>&1; then
+  echo "Installing neovim..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt install -y neovim
+  fi
+fi
+
 # - wm
 # -- qtile
 # TODO
@@ -118,7 +126,7 @@ echo "Updating font cache..."
 fc-cache -fv
 
 # configure applications
-if command -v vim >/dev/null 2>&1; then
-  echo "Installing vim plugins..."
-  vim '+PlugUpdate' '+qall'
-fi
+#if command -v vim >/dev/null 2>&1; then
+#  echo "Installing vim plugins..."
+#  vim '+PlugUpdate' '+qall'
+#fi
