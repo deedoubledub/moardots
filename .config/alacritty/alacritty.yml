@@ -1,0 +1,62 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+window:
+  padding:
+    x: 2
+    y: 2
+
+font:
+  normal:
+    family: RobotoMono Nerd Font
+    style: Regular
+  bold:
+    family: RobotoMono Nerd Font
+    style: Bold
+  italic:
+    family: RobotoMono Nerd Font
+    style: Italic
+  bold_italic:
+    family: RobotoMono Nerd Font
+    style: Bold Italic
+  size: 11.0
+
+# Nord
+colors:
+  # Default colors
+  primary:
+    background: '0x2E3440'
+    foreground: '0xD8DEE9'
+  # Cursor colors
+  cursor:
+    text:   '0x2E3440'
+    cursor: '0xD8DEE9'
+  # Normal colors
+  normal:
+    black:   '0x3B4252'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x88C0D0'
+    white:   '0xE5E9F0'
+  # Bright colors
+  bright:
+    black:   '0x4C566A'
+    red:     '0xBF616A'
+    green:   '0xA3BE8C'
+    yellow:  '0xEBCB8B'
+    blue:    '0x81A1C1'
+    magenta: '0xB48EAD'
+    cyan:    '0x8FBCBB'
+    white:   '0xECEFF4'
+
+# Allow terminal applications to change Alacritty's window title.
+dynamic_title: true
+
+key_bindings:
+  - { key: V,        mods: Control|Shift, action: Paste            }
+  - { key: C,        mods: Control|Shift, action: Copy             }
+  - { key: Key0,     mods: Control,       action: ResetFontSize    }
+  - { key: Equals,   mods: Control,       action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
