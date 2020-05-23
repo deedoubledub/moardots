@@ -1,10 +1,10 @@
 #- - - - - - - - - - - - - - - - - - -#
-#                           variables #
+#               environment variables #
 #- - - - - - - - - - - - - - - - - - -#
 
 export EDITOR=vim
 export TERMINAL=alacritty
-export PATH=$PATH:~/bin
+export PATH=$PATH:~/.local/bin
 
 #- - - - - - - - - - - - - - - - - - -#
 #                             general #
@@ -13,14 +13,11 @@ export PATH=$PATH:~/bin
 # if not interactive, don't do anything
 [[ $- != *i* ]] && return
 
-# git prompt
-source ~/.bash-git-prompt.sh
-
 # directory colors
-eval `dircolors ~/.dircolors`
+[[ -f ~/.config/dircolors ]] && eval `dircolors ~/.config/dircolors`
 
 # aliases
-[[ -f ~/.alias ]] && . ~/.alias
+[[ -f ~/.config/alias ]] && . ~/.config/alias
 
 # completion
 [[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
@@ -35,7 +32,7 @@ shopt -s autocd
 set -o vi
 
 # gam setup
-gam() { "$HOME/bin/gam/gam" "$@" ; }
+gam() { "$HOME/.local/bin/gam/gam" "$@" ; }
 
 #- - - - - - - - - - - - - - - - - - -#
 #                            ssh keys #
@@ -64,6 +61,9 @@ done
 #- - - - - - - - - - - - - - - - - - -#
 #                              prompt #
 #- - - - - - - - - - - - - - - - - - -#
+
+# git prompt
+source ~/.local/bin/bash-git-prompt.sh
 
 PROMPT_COMMAND=prompt
 
