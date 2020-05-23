@@ -14,7 +14,7 @@ export PATH=$PATH:~/.local/bin
 [[ $- != *i* ]] && return
 
 # directory colors
-[[ -f ~/.config/dircolors ]] && eval `dircolors ~/.config/dircolors`
+[[ -f ~/.config/dircolors ]] && eval $(dircolors ~/.config/dircolors)
 
 # aliases
 [[ -f ~/.config/alias ]] && . ~/.config/alias
