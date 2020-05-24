@@ -124,9 +124,3 @@ fi
 # install fonts
 echo "Updating font cache..."
 fc-cache -fv
-
-# configure applications
-#if command -v vim >/dev/null 2>&1; then
-#  echo "Installing vim plugins..."
-#  vim '+PlugUpdate' '+qall'
-#fi

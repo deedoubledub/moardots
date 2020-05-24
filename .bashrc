@@ -2,7 +2,7 @@
 #               environment variables #
 #- - - - - - - - - - - - - - - - - - -#
 
-export EDITOR=vim
+export EDITOR=nvim
 export TERMINAL=alacritty
 export PATH=$PATH:~/.local/bin
 
