@@ -6,15 +6,21 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.local/share/nvim/site/plugged')
-  Plug 'airblade/vim-gitgutter'
-  Plug 'ntpeters/vim-better-whitespace'
-  Plug 'scrooloose/nerdtree'
+  " theme
+  Plug 'arcticicestudio/nord-vim'
+  Plug 'vim-airline/vim-airline'
+  " git
+  Plug 'mhinz/vim-signify'
   Plug 'tpope/vim-fugitive'
+  " filesystem
+  Plug 'scrooloose/nerdtree'
+  " colors
+  Plug 'norcalli/nvim-colorizer.lua'
+  Plug 'junegunn/rainbow_parentheses.vim'
+
+  Plug 'ntpeters/vim-better-whitespace'
   Plug 'tpope/vim-endwise'
   Plug 'rstacruz/vim-closer'
-  Plug 'norcalli/nvim-colorizer.lua'
-  Plug 'vim-airline/vim-airline'
-  Plug 'arcticicestudio/nord-vim'
 call plug#end()
 
 "auto install missing plugins on startup
