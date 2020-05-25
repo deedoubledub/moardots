@@ -14,13 +14,22 @@ call plug#begin('~/.local/share/nvim/site/plugged')
   Plug 'tpope/vim-fugitive'
   " filesystem
   Plug 'scrooloose/nerdtree'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tpope/vim-eunuch'
   " colors
   Plug 'norcalli/nvim-colorizer.lua'
   Plug 'junegunn/rainbow_parentheses.vim'
-
+  " text helpers
   Plug 'ntpeters/vim-better-whitespace'
   Plug 'tpope/vim-endwise'
-  Plug 'rstacruz/vim-closer'
+  Plug 'jiangmiao/auto-pairs'
+  Plug 'tpope/vim-commentary'
+  Plug 'alvan/vim-closetag'
+  " motion helpers
+  Plug 'justinmk/vim-sneak'
+  Plug 'unblevable/quick-scope'
+  " syntax
+  Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 "auto install missing plugins on startup

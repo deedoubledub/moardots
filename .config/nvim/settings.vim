@@ -1,25 +1,25 @@
 " general
-set termguicolors  " enable truecolor
-syntax enable      " enable syntax hightligting
-set nowrap         " disable word wrapping long lines
-set iskeyword+=-   " treat dash separated words as a single word
+set termguicolors      " enable truecolor
+syntax enable          " enable syntax hightligting
+set nowrap             " disable word wrapping long lines
+set iskeyword+=-       " treat dash separated words as a single word
 
 " tabs
-set tabstop=2	   " set tab width to 2
-set shiftwidth=2   " set tab width to 2
-set smarttab       " smarter tabbing
-set expandtab      " convert tabs to spaces
-set autoindent     " auto indent
-set smartindent    " smart auto indenting
+set tabstop=2	         " set tab width to 2
+set shiftwidth=2       " set tab width to 2
+set smarttab           " smarter tabbing
+set expandtab          " convert tabs to spaces
+set autoindent         " auto indent
+set smartindent        " smart auto indenting
 
 " status, tab line, gutter
-set laststatus=2   " always show the status line
-set showtabline=2  " always show the tab line
-set noshowmode     " hide mode, it's on the status line
-set cursorline     " highlight the current line
-set number         " show line numbers
-set relativenumber " show relative line numbers
-set updatetime=100 " faster updates for gutter
+set laststatus=2       " always show the status line
+set showtabline=2      " always show the tab line
+set noshowmode         " hide mode, it's on the status line
+set cursorline         " highlight the current line
+set number             " show line numbers
+set relativenumber     " show relative line numbers
+set updatetime=100     " faster updates for gutter
 
 " toggle relative line numbers off in INSERT mode
 augroup numbertoggle
@@ -29,7 +29,10 @@ augroup numbertoggle
 augroup END
 
 " search
-set hlsearch       " highlight all search results
-set incsearch      " incremental search while typing query
-set ignorecase     " ignore case while searching
-set smartcase      " override ignorecase if upper case character is used
+set hlsearch           " highlight all search results
+set incsearch          " incremental search while typing query
+set ignorecase         " ignore case while searching
+set smartcase          " override ignorecase if upper case character is used
+
+" disable comments continuing to next line
+autocmd BufNewFile,BufWinEnter * setlocal formatoptions-=cro
