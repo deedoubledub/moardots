@@ -28,6 +28,15 @@ if ! command -v tmux >/dev/null 2>&1; then
   fi
 fi
 
+if [ ! -d ~/.config/tmux/plugins/tpm ]; then
+  echo "Installing tmux plugin manager..."
+  git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
+fi
+
+echo "Installing tmux plugins..."
+export TMUX_PLUGIN_MANAGER_PATH="~/.config/tmux/plugins/"
+~/.config/tmux/plugins/tpm/bin/install_plugins
+
 # -- ncurses-term (extra $TERM defs)
 if [ ! -f /usr/share/terminfo/a/alacritty ]; then
   echo "Installing ncurses-term..."
