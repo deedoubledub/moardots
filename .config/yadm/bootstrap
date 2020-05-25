@@ -131,5 +131,11 @@ if ! command -v dunst >/dev/null 2>&1; then
 fi
 
 # install fonts
-echo "Updating font cache..."
-fc-cache -fv
+if [ ! -f "$HOME/.local/share/fonts/Roboto Mono Nerd Font Complete.ttf" ]; then
+  echo "Installing missing font RobotoMono..."
+  cd ~/.local/share/fonts
+  curl -fLo RobotoMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/RobotoMono.zip \
+  && unzip RobotoMono.zip \
+  && rm RobotoMono.zip \
+  && fc-cache -fv
+fi
