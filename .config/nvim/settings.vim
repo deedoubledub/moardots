@@ -19,6 +19,7 @@ set noshowmode         " hide mode, it's on the status line
 set cursorline         " highlight the current line
 set number             " show line numbers
 set relativenumber     " show relative line numbers
+set colorcolumn=81     " highlight column 81 to show long lines
 set updatetime=100     " faster updates for gutter
 
 " toggle relative line numbers off in INSERT mode
