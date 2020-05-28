@@ -71,11 +71,11 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     # send window to workspace
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
-    # dropdown scratchpad terminal
-    groups.append(ScratchPad("scratchpad", [
-        DropDown("term", terminal),
-    ]))
-    keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
+# dropdown scratchpad terminal
+groups.append(ScratchPad("scratchpad", [
+    DropDown("term", terminal),
+]))
+keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
 
 # layouts
 layouts = [
