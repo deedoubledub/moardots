@@ -1,96 +1,87 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-from libqtile.config import Key, Screen, Group, Drag, Click
+from libqtile.config import Key, Screen, Group, ScratchPad, DropDown, Drag, Click
 from libqtile.lazy import lazy
 from libqtile import layout, bar, widget
-
 from typing import List  # noqa: F401
 
-mod = "mod4"
+mod = "mod1"
+terminal = "alacritty"
 
+# keybinds
 keys = [
-    # Switch between windows in current stack pane
-    Key([mod], "k", lazy.layout.down()),
-    Key([mod], "j", lazy.layout.up()),
+    # change window focus
+    Key([mod], "h", lazy.layout.left()),
+    Key([mod], "j", lazy.layout.down()),
+    Key([mod], "k", lazy.layout.up()),
+    Key([mod], "l", lazy.layout.right()),
 
-    # Move windows up or down in current stack
-    Key([mod, "control"], "k", lazy.layout.shuffle_down()),
-    Key([mod, "control"], "j", lazy.layout.shuffle_up()),
+    # move focused window
+    Key([mod, "shift"], "h", lazy.layout.swap_left()),
+    Key([mod, "shift"], "j", lazy.layout.shuffle_down()),
+    Key([mod, "shift"], "k", lazy.layout.shuffle_up()),
+    Key([mod, "shift"], "l", lazy.layout.swap_right()),
 
-    # Switch window focus to other pane(s) of stack
-    Key([mod], "space", lazy.layout.next()),
+    # resize layout ratio
+    Key([mod, "control"], "j", lazy.layout.grow()),
+    Key([mod, "control"], "k", lazy.layout.shrink()),
 
-    # Swap panes of split stack
-    Key([mod, "shift"], "space", lazy.layout.rotate()),
+    # flip layout
+    Key([mod], "backslash", lazy.layout.flip()),
 
-    # Toggle between split and unsplit sides of stack.
-    # Split = all windows displayed
-    # Unsplit = 1 window displayed, like Max layout, but still with
-    # multiple stack panes
-    Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
-    Key([mod], "Return", lazy.spawn("xterm")),
+    # toggle window fullscreen
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
 
-    # Toggle between different layouts as defined below
+    # toggle window floating
+    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
+
+    # close window
+    Key([mod, "shift"], "q", lazy.window.kill()),
+
+    # cycle through layouts
     Key([mod], "Tab", lazy.next_layout()),
-    Key([mod], "w", lazy.window.kill()),
+    Key([mod, "shift"], "Tab", lazy.prev_layout()),
 
-    Key([mod, "control"], "r", lazy.restart()),
-    Key([mod, "control"], "q", lazy.shutdown()),
+    # restart qtile
+    Key([mod, "shift"], "r", lazy.restart()),
+
+    # quit qtile
+    Key([mod, "shift"], "Escape", lazy.shutdown()),
+
+    # open terminal
+    Key([mod], "Return", lazy.spawn(terminal)),
+
     Key([mod], "r", lazy.spawncmd()),
 ]
 
-groups = [Group(i) for i in "asdfuiop"]
+# workspaces
+group_names = [("1", {'layout': 'monadtall'}),
+               ("2", {'layout': 'monadtall'}),
+               ("3", {'layout': 'monadtall'}),
+               ("4", {'layout': 'monadtall'}),
+               ("5", {'layout': 'monadtall'}),
+               ("6", {'layout': 'monadtall'}),
+               ("7", {'layout': 'monadtall'}),
+               ("8", {'layout': 'monadtall'}),
+               ("9", {'layout': 'monadtall'})]
 
-for i in groups:
-    keys.extend([
-        # mod1 + letter of group = switch to group
-        Key([mod], i.name, lazy.group[i.name].toscreen()),
+groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
-        # mod1 + shift + letter of group = switch to & move focused window to group
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True)),
-        # Or, use below if you prefer not to switch to that group.
-        # # mod1 + shift + letter of group = move focused window to group
-        # Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-    ])
+for i, (name, kwargs) in enumerate(group_names, 1):
+    # switch workspaces
+    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+    # send window to workspace
+    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
+    # dropdown scratchpad terminal
+    groups.append(ScratchPad("scratchpad", [
+        DropDown("term", terminal),
+    ]))
+    keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
+
+# layouts
 layouts = [
+    layout.MonadTall(margin=5),
+    layout.MonadWide(margin=5),
     layout.Max(),
-    layout.Stack(num_stacks=2),
-    # Try more layouts by unleashing below layouts.
-    # layout.Bsp(),
-    # layout.Columns(),
-    # layout.Matrix(),
-    # layout.MonadTall(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.Tile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
 ]
 
 widget_defaults = dict(
@@ -118,13 +109,13 @@ screens = [
     ),
 ]
 
-# Drag floating layouts.
+# mod + left click-drag, set floating
+# mod + right click-drag, resize
 mouse = [
     Drag([mod], "Button1", lazy.window.set_position_floating(),
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
@@ -143,12 +134,6 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'notification'},
     {'wmclass': 'splash'},
     {'wmclass': 'toolbar'},
-    {'wmclass': 'confirmreset'},  # gitk
-    {'wmclass': 'makebranch'},  # gitk
-    {'wmclass': 'maketag'},  # gitk
-    {'wname': 'branchdialog'},  # gitk
-    {'wname': 'pinentry'},  # GPG key password entry
-    {'wmclass': 'ssh-askpass'},  # ssh-askpass
 ])
 auto_fullscreen = True
 focus_on_window_activation = "smart"
