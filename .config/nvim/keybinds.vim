@@ -17,6 +17,6 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " map ctrl + h to disable hlsearch
 nnoremap <C-h> :nohlsearch<CR>
 
-" use ctrl + / to toggle comments
+" use ctrl + # to toggle comments
 nnoremap <leader># :Commentary<CR>
 vnoremap <leader># :Commentary<CR>
