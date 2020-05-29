@@ -6,6 +6,14 @@ from typing import List  # noqa: F401
 mod = "mod1"
 terminal = "alacritty"
 
+# theme palette
+palette = [
+    '#2E3440', '#3B4252', '#434C5E', '#4C566A',
+    '#D8DEE9', '#E5E9F0', '#ECEFF4',
+    '#8FBCBB', '#88C0D0', '#81A1C1', '#5E81AC',
+    '#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD',
+]
+
 # keybinds
 keys = [
     # change window focus
@@ -40,6 +48,8 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "Tab", lazy.prev_layout()),
 
+    # TODO: screen management keys
+
     # restart qtile
     Key([mod, "shift"], "r", lazy.restart()),
 
@@ -49,10 +59,22 @@ keys = [
     # open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
 
+    # rofi launcher (placeholder)
+    Key([mod], "d", lazy.spawn(terminal)),
+
+    # TODO: open browser
+    # TODO: open file manager
+    # TODO: open music player
+    # TODO?: open slack
+    # TODO?: open discord
+    # TODO: screenshot tool
+
+    # TODO: delete this
     Key([mod], "r", lazy.spawncmd()),
 ]
 
 # workspaces
+# TODO: name these
 group_names = [("1", {'layout': 'monadtall'}),
                ("2", {'layout': 'monadtall'}),
                ("3", {'layout': 'monadtall'}),
@@ -78,35 +100,53 @@ groups.append(ScratchPad("scratchpad", [
 keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
 
 # layouts
+# TODO: theme these
 layouts = [
     layout.MonadTall(margin=5),
     layout.MonadWide(margin=5),
     layout.Max(),
 ]
 
+# widget default config
 widget_defaults = dict(
-    font='sans',
-    fontsize=12,
+    font='RobotoMono Nerd Font',
+    fontsize=14,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
 
+# generate primary bar
+def primary_bar():
+    return bar.Bar(
+        [
+            widget.GroupBox(
+                disable_drag=True,
+                highlight_color=palette[9],
+                highlight_method='line',
+            ),
+            widget.CurrentLayoutIcon(),
+            widget.WindowName(),
+            widget.Systray(),
+            widget.CPU(format='{load_percent}%'),
+            widget.Memory(),
+            widget.Net(use_bits=True),
+            widget.CheckUpdates(distro='Ubuntu',
+                                restart_indicator='x',
+                                update_interval=3600,
+                                custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'"
+                                ),
+            widget.Clock(format='%a %b %d %I:%M %p'),
+        ],
+        24,
+    )
+
+# TODO: battery widget on laptop
+# TODO: mpris music widget
+# TODO: volume widgets
+
+# screens
 screens = [
-    Screen(
-        bottom=bar.Bar(
-            [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.TextBox("default config", name="default"),
-                widget.Systray(),
-                widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                widget.QuickExit(),
-            ],
-            24,
-        ),
-    ),
+    Screen(top=primary_bar())
 ]
 
 # mod + left click-drag, set floating
