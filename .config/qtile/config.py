@@ -1,7 +1,10 @@
 from libqtile.config import Key, Screen, Group, ScratchPad, DropDown, Drag, Click
 from libqtile.lazy import lazy
-from libqtile import layout, bar, widget
+from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
+import os
+import subprocess
+import psutil
 
 mod = "mod1"
 terminal = "alacritty"
@@ -68,9 +71,6 @@ keys = [
     # TODO?: open slack
     # TODO?: open discord
     # TODO: screenshot tool
-
-    # TODO: delete this
-    Key([mod], "r", lazy.spawncmd()),
 ]
 
 # workspaces
@@ -79,11 +79,7 @@ group_names = [("1", {'layout': 'monadtall'}),
                ("2", {'layout': 'monadtall'}),
                ("3", {'layout': 'monadtall'}),
                ("4", {'layout': 'monadtall'}),
-               ("5", {'layout': 'monadtall'}),
-               ("6", {'layout': 'monadtall'}),
-               ("7", {'layout': 'monadtall'}),
-               ("8", {'layout': 'monadtall'}),
-               ("9", {'layout': 'monadtall'})]
+               ("5", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -100,10 +96,16 @@ groups.append(ScratchPad("scratchpad", [
 keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
 
 # layouts
-# TODO: theme these
+layout_theme = {
+    "margin": 5,
+    "border_width": 2,
+    "border_focus": "5E81AC",
+    "border_normal": "4C566A",
+}
+
 layouts = [
-    layout.MonadTall(margin=5),
-    layout.MonadWide(margin=5),
+    layout.MonadTall(**layout_theme),
+    layout.MonadWide(**layout_theme),
     layout.Max(),
 ]
 
@@ -115,34 +117,68 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
+# widget data functions
+def memory_usage():
+    mem=psutil.virtual_memory()
+    return '\uF2DB {:02.0f}%'.format(mem.used / mem.total * 100)
+
+# widget separators
+def separator(side='', foreground='', background=''):
+    if side == 'left':
+        text=u'\uE0BA'
+    elif side == 'right':
+        text=u'\uE0BC'
+    return widget.TextBox(
+        text=text,
+        width=28,
+        fontsize=55,
+        padding=-21,
+        foreground=foreground,
+        background=background,
+    );
+
 # generate primary bar
 def primary_bar():
     return bar.Bar(
-        [
+        widgets=[
             widget.GroupBox(
                 disable_drag=True,
-                highlight_color=palette[9],
+                background=palette[1],
+                inactive=palette[3],
+                highlight_color=palette[10],
                 highlight_method='line',
             ),
             widget.CurrentLayoutIcon(),
             widget.WindowName(),
             widget.Systray(),
-            widget.CPU(format='{load_percent}%'),
-            widget.Memory(),
-            widget.Net(use_bits=True),
+            separator('left', palette[10], palette[1]),
+            widget.GenPollText(func=memory_usage,
+                               update_interval=1,
+                               background=palette[10]),
+            separator('right', palette[10], palette[9]),
+            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
+            separator('right', palette[9], palette[10]),
             widget.CheckUpdates(distro='Ubuntu',
-                                restart_indicator='x',
+                                restart_indicator=' \uFC07',
                                 update_interval=3600,
-                                custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'"
+                                custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'",
+                                display_format='\uF0AB {updates}',
+                                background=palette[10],
                                 ),
-            widget.Clock(format='%a %b %d %I:%M %p'),
+            separator('right', palette[10], palette[9]),
+            widget.Clock(format='\uF5ED %a %b %d', background=palette[9]),
+            separator('left', palette[10], palette[9]),
+            widget.Clock(format='\uF017 %I:%M %p', background=palette[10]),
+            separator('right', palette[10], palette[1]),
         ],
-        24,
+        size=28,
+        background=palette[1],
     )
 
 # TODO: battery widget on laptop
 # TODO: mpris music widget
 # TODO: volume widgets
+# TODO: vpn status indicator
 
 # screens
 screens = [
@@ -187,3 +223,9 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+# startup applications
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
