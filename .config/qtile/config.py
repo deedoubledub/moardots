@@ -82,12 +82,11 @@ keys = [
 ]
 
 # workspaces
-# TODO: name these
-group_names = [("1", {'layout': 'monadtall'}),
-               ("2", {'layout': 'monadtall'}),
-               ("3", {'layout': 'monadtall'}),
-               ("4", {'layout': 'monadtall'}),
-               ("5", {'layout': 'monadtall'})]
+group_names = [("\uF484", {'layout': 'monadtall'}),
+               ("\uF489", {'layout': 'monadtall'}),
+               ("\uF07C", {'layout': 'monadtall'}),
+               ("\uF11B", {'layout': 'monadtall'}),
+               ("\uF086", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -154,6 +153,10 @@ def primary_bar():
                 scale=0.66,
             ),
             widget.GroupBox(
+                padding_x=5,
+                margin_x=5,
+                spacing=10,
+                fontsize=18,
                 disable_drag=True,
                 background=palette[1],
                 inactive=palette[3],
