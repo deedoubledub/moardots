@@ -8,6 +8,8 @@ import psutil
 
 mod = "mod1"
 terminal = "alacritty"
+browser = "google-chrome"
+fm = "nautilus"
 
 # theme palette
 palette = [
@@ -65,12 +67,18 @@ keys = [
     # rofi launcher (placeholder)
     Key([mod], "d", lazy.spawn(terminal)),
 
-    # TODO: open browser
-    # TODO: open file manager
+    # web browser
+    Key([mod], "i", lazy.spawn(browser)),
+
+    # file manager
+    Key([mod], "o", lazy.spawn(fm)),
+
+    # flameshot
+    Key([mod], "Print", lazy.spawn('flameshot gui')),
+
     # TODO: open music player
     # TODO?: open slack
     # TODO?: open discord
-    # TODO: screenshot tool
 ]
 
 # workspaces
@@ -141,6 +149,10 @@ def separator(side='', foreground='', background=''):
 def primary_bar():
     return bar.Bar(
         widgets=[
+            widget.CurrentLayoutIcon(
+                custom_icon_paths=[os.path.expanduser('~/.config/qtile/icons')],
+                scale=0.66,
+            ),
             widget.GroupBox(
                 disable_drag=True,
                 background=palette[1],
@@ -148,7 +160,6 @@ def primary_bar():
                 highlight_color=palette[10],
                 highlight_method='line',
             ),
-            widget.CurrentLayoutIcon(),
             widget.WindowName(),
             widget.Systray(),
             separator('left', palette[10], palette[1]),
