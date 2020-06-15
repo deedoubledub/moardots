@@ -82,6 +82,7 @@ keys = [
 ]
 
 # workspaces
+# workspace names
 group_names = [("\uF484", {'layout': 'monadtall'}),
                ("\uF489", {'layout': 'monadtall'}),
                ("\uF07C", {'layout': 'monadtall'}),
@@ -90,9 +91,25 @@ group_names = [("\uF484", {'layout': 'monadtall'}),
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
+# helper function to pin workspaces to screens
+# https://github.com/qtile/qtile/issues/1271#issuecomment-458107043
+def go_to_group(group):
+    def f(qtile):
+        # workspaces 1-4 on primary screen
+        if group in [name[0] for name in group_names][0 : 4]:
+            qtile.cmd_to_screen(0)
+            qtile.groups_map[group].cmd_toscreen(toggle=False)
+        # workspaces 5+ on secondary screen
+        else:
+            qtile.cmd_to_screen(1)
+            qtile.groups_map[group].cmd_toscreen(toggle=False)
+    return f
+
+# workspace keybinds
 for i, (name, kwargs) in enumerate(group_names, 1):
     # switch workspaces
-    keys.append(Key([mod], str(i), lazy.group[name].toscreen()))
+    # workspaces 1-4 on primary screen, 5+ on secondary screen
+    keys.append(Key([mod], str(i), lazy.function(go_to_group(name))))
     # send window to workspace
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
@@ -106,7 +123,7 @@ keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')
 layout_theme = {
     "margin": 5,
     "border_width": 2,
-    "border_focus": "5E81AC",
+    "border_focus": "EBCB8B",
     "border_normal": "4C566A",
 }
 
@@ -158,10 +175,15 @@ def primary_bar():
                 spacing=10,
                 fontsize=18,
                 disable_drag=True,
+                use_mouse_wheel=False,
                 background=palette[1],
                 inactive=palette[3],
                 highlight_color=palette[10],
                 highlight_method='line',
+                this_current_screen_border=palette[13],
+                other_current_screen_border=palette[13],
+                this_screen_border=palette[10],
+                other_screen_border=palette[10],
             ),
             widget.WindowName(),
             widget.Systray(),
@@ -196,7 +218,8 @@ def primary_bar():
 
 # screens
 screens = [
-    Screen(top=primary_bar())
+    Screen(top=primary_bar()),
+    Screen(),
 ]
 
 # mod + left click-drag, set floating
