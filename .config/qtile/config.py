@@ -53,8 +53,6 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "Tab", lazy.prev_layout()),
 
-    # TODO: screen management keys
-
     # restart qtile
     Key([mod, "shift"], "r", lazy.restart()),
 
@@ -64,8 +62,8 @@ keys = [
     # open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
 
-    # rofi launcher (placeholder)
-    Key([mod], "d", lazy.spawn(terminal)),
+    # rofi launcher
+    Key([mod], "d", lazy.spawn('rofi -show drun')),
 
     # web browser
     Key([mod], "i", lazy.spawn(browser)),
@@ -186,8 +184,11 @@ def primary_bar():
                 other_screen_border=palette[10],
             ),
             widget.WindowName(),
-            widget.Systray(),
-            separator('left', palette[10], palette[1]),
+            separator('left', palette[9], palette[1]),
+            widget.Systray(background=palette[9],
+                           icon_size=24,
+                           padding=10),
+            separator('left', palette[10], palette[9]),
             widget.GenPollText(func=memory_usage,
                                update_interval=1,
                                background=palette[10]),
@@ -215,6 +216,15 @@ def primary_bar():
 # TODO: mpris music widget
 # TODO: volume widgets
 # TODO: vpn status indicator
+
+# TODO: notifications
+# TODO: lockscreen
+
+# TODO: nmapplet
+# TODO: arandr
+
+# TODO: gtk theme
+# TODO: cursor
 
 # screens
 screens = [

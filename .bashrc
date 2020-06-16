@@ -28,9 +28,6 @@ setxkbmap -option ctrl:nocaps
 # enables autocd, interpret dir_name as cd dir_name
 shopt -s autocd
 
-# enables vi mode
-set -o vi
-
 # gam setup
 gam() { "$HOME/.local/bin/gam/gam" "$@" ; }
 
