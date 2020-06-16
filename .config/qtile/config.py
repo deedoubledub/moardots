@@ -74,9 +74,16 @@ keys = [
     # flameshot
     Key([mod], "Print", lazy.spawn('flameshot gui')),
 
+    # media keys
+    Key([], "XF86AudioRaiseVolume", lazy.spawn('pavolume up')),
+    Key([], "XF86AudioLowerVolume", lazy.spawn('pavolume down')),
+    Key([], "XF86AudioMute", lazy.spawn('pavolume mute')),
+    Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 2 toggle')),
+
     # TODO: open music player
     # TODO?: open slack
     # TODO?: open discord
+    # TODO: lock screen
 ]
 
 # workspaces
@@ -188,25 +195,28 @@ def primary_bar():
             widget.Systray(background=palette[9],
                            icon_size=24,
                            padding=10),
-            separator('left', palette[10], palette[9]),
+            separator('right', palette[9], palette[10]),
+            widget.TextBox(text='\uF027', fontsize=25, background=palette[10]),
+            widget.PulseVolume(background=palette[10]),
+            separator('left', palette[9], palette[10]),
             widget.GenPollText(func=memory_usage,
                                update_interval=1,
-                               background=palette[10]),
-            separator('right', palette[10], palette[9]),
-            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
+                               background=palette[9]),
             separator('right', palette[9], palette[10]),
+            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[10]),
+            separator('right', palette[10], palette[9]),
             widget.CheckUpdates(distro='Ubuntu',
                                 restart_indicator=' \uFC07',
                                 update_interval=3600,
                                 custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'",
                                 display_format='\uF0AB {updates}',
-                                background=palette[10],
+                                background=palette[9],
                                 ),
-            separator('right', palette[10], palette[9]),
-            widget.Clock(format='\uF5ED %a %b %d', background=palette[9]),
-            separator('left', palette[10], palette[9]),
-            widget.Clock(format='\uF017 %I:%M %p', background=palette[10]),
-            separator('right', palette[10], palette[1]),
+            separator('right', palette[9], palette[10]),
+            widget.Clock(format='\uF5ED %a %b %d', background=palette[10]),
+            separator('left', palette[9], palette[10]),
+            widget.Clock(format='\uF017 %I:%M %p', background=palette[9]),
+            separator('right', palette[9], palette[1]),
         ],
         size=28,
         background=palette[1],
@@ -214,7 +224,6 @@ def primary_bar():
 
 # TODO: battery widget on laptop
 # TODO: mpris music widget
-# TODO: volume widgets
 # TODO: vpn status indicator
 
 # TODO: notifications
@@ -222,6 +231,7 @@ def primary_bar():
 
 # TODO: nmapplet
 # TODO: arandr
+# TODO: picom
 
 # TODO: gtk theme
 # TODO: cursor
@@ -258,8 +268,11 @@ floating_layout = layout.Floating(
         {'wmclass': 'notification'},
         {'wmclass': 'splash'},
         {'wmclass': 'toolbar'},
+        {'wmclass': 'Cssh'},
+        {'wmclass': '#menu#hosts'},
+        {'wmclass': 'XTerm'},
     ],
-    **layout_theme
+    **layout_theme,
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
