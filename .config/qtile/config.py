@@ -162,6 +162,9 @@ def memory_usage():
     mem=psutil.virtual_memory()
     return '\uF2DB {:02.0f}%'.format(mem.used / mem.total * 100)
 
+def open_calendar(qtile):
+    qtile.cmd_spawn('gsimplecal')
+
 def vpn_status():
     status=subprocess.run(["vpn-status.sh"], capture_output=True, text=True).stdout.strip('\n')
     if status == 'VPN up':
@@ -238,7 +241,9 @@ def primary_bar():
                                fontsize=20,
                                background=palette[10]),
             separator('left', palette[9], palette[10]),
-            widget.Clock(format='\uF5ED %a %b %d', background=palette[9]),
+            widget.Clock(format='\uF5ED %a %b %d',
+                         background=palette[9],
+                         mouse_callbacks={'Button1': open_calendar}),
             separator('left', palette[10], palette[9]),
             widget.Clock(format='\uF017 %I:%M %p', background=palette[10]),
             separator('right', palette[10], palette[1]),
@@ -249,6 +254,7 @@ def primary_bar():
 
 # TODO: battery widget on laptop
 # TODO: mpris music widget
+# TODO: weather widget
 
 # TODO: notifications
 # TODO: lockscreen
@@ -291,7 +297,9 @@ floating_layout = layout.Floating(
         {'wmclass': 'notification'},
         {'wmclass': 'splash'},
         {'wmclass': 'toolbar'},
-        {'wmclass': 'XTerm'}, #clusterssh terms
+        {'wmclass': 'XTerm'}, # clusterssh terms
+        {'wmclass': 'gsimplecal'},
+        {'wmclass': 'crx_nngceckbapebfimnlniiiahkandclblb'}, # bitwarden extension
     ],
     **layout_theme,
 )
