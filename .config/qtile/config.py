@@ -151,6 +151,15 @@ def memory_usage():
     mem=psutil.virtual_memory()
     return '\uF2DB {:02.0f}%'.format(mem.used / mem.total * 100)
 
+def vpn_status():
+    status=subprocess.run(["vpn-status.sh"], capture_output=True, text=True).stdout.strip('\n')
+    if status == 'VPN up':
+        return '\uF983'
+    elif status == 'VPN down':
+        return '\uF65A'
+    else:
+        return '\uF128'
+
 # widget separators
 def separator(side='', foreground='', background=''):
     if side == 'left':
@@ -213,10 +222,15 @@ def primary_bar():
                                 background=palette[9],
                                 ),
             separator('right', palette[9], palette[10]),
-            widget.Clock(format='\uF5ED %a %b %d', background=palette[10]),
+            widget.GenPollText(func=vpn_status,
+                               update_interval=1,
+                               fontsize=20,
+                               background=palette[10]),
             separator('left', palette[9], palette[10]),
-            widget.Clock(format='\uF017 %I:%M %p', background=palette[9]),
-            separator('right', palette[9], palette[1]),
+            widget.Clock(format='\uF5ED %a %b %d', background=palette[9]),
+            separator('left', palette[10], palette[9]),
+            widget.Clock(format='\uF017 %I:%M %p', background=palette[10]),
+            separator('right', palette[10], palette[1]),
         ],
         size=28,
         background=palette[1],
@@ -224,7 +238,6 @@ def primary_bar():
 
 # TODO: battery widget on laptop
 # TODO: mpris music widget
-# TODO: vpn status indicator
 
 # TODO: notifications
 # TODO: lockscreen
