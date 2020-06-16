@@ -43,7 +43,7 @@
 #screen_reserve_bottom=60
 #screen_reserve_left=0
 #screen_reserve_right=0
-screen_reserve_top=30
+#screen_reserve_top=30
 #send_menu_xml_file=/home/d/dwagner/.clusterssh/send_menu
 #sftp=sftp
 #sftp_args=
@@ -63,7 +63,7 @@ terminal_args=-fa "RobotoMono Nerd Font" -fs 11
 #terminal_reserve_bottom=0
 #terminal_reserve_left=5
 #terminal_reserve_right=0
-terminal_reserve_top=42
+terminal_reserve_top=0
 terminal_size=200x40
 #terminal_title_opt=-T
 #title=CSSH

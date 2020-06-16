@@ -19,6 +19,14 @@ palette = [
     '#BF616A', '#D08770', '#EBCB8B', '#A3BE8C', '#B48EAD',
 ]
 
+# bring floating windows to the front
+@lazy.function
+def float_to_front(qtile):
+    for group in qtile.groups:
+        for window in group.windows:
+            if window.floating:
+                window.cmd_bring_to_front()
+
 # keybinds
 keys = [
     # change window focus
@@ -45,6 +53,9 @@ keys = [
 
     # toggle window floating
     Key([mod, "shift"], "space", lazy.window.toggle_floating()),
+
+    # bring floating windows to front
+    Key([mod, "control"], "space", float_to_front),
 
     # close window
     Key([mod, "shift"], "q", lazy.window.kill()),
@@ -268,7 +279,7 @@ dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 main = None
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
@@ -281,9 +292,7 @@ floating_layout = layout.Floating(
         {'wmclass': 'notification'},
         {'wmclass': 'splash'},
         {'wmclass': 'toolbar'},
-        {'wmclass': 'Cssh'},
-        {'wmclass': '#menu#hosts'},
-        {'wmclass': 'XTerm'},
+        {'wmclass': 'XTerm'}, #clusterssh terms
     ],
     **layout_theme,
 )
