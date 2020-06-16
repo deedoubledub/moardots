@@ -1,6 +1,8 @@
-rofi.theme: solarized
-rofi.font: Roboto Mono 18
-rofi.show-icons: true
-rofi.lines: 5
+rofi.theme: nord
 rofi.modi: drun
 rofi.display-drun: run
+rofi.sort: true
+rofi.font: RobotoMono Nerd Font 18
+rofi.show-icons: true
+rofi.lines: 10
+rofi.width: 30
