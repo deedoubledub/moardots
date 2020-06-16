@@ -258,7 +258,6 @@ def primary_bar():
 # TODO: picom
 
 # TODO: gtk theme
-# TODO: cursor
 
 # screens
 screens = [
