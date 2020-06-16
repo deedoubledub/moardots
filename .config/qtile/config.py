@@ -102,8 +102,8 @@ keys = [
 group_names = [("\uF484", {'layout': 'monadtall'}),
                ("\uF489", {'layout': 'monadtall'}),
                ("\uF07C", {'layout': 'monadtall'}),
-               ("\uF11B", {'layout': 'monadtall'}),
-               ("\uF086", {'layout': 'monadtall'})]
+               ("\uF448", {'layout': 'monadtall'}),
+               ("\uF879", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
