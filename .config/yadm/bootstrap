@@ -15,8 +15,8 @@ if ! command -v alacritty >/dev/null 2>&1; then
   echo "Installing alacritty..."
   if [ $NAME == "Ubuntu" ]; then
     sudo add-apt-repository ppa:mmstick76/alacritty
-    sudo apt update
-    sudo apt install -y alacritty
+    sudo apt-get update
+    sudo apt-get install -y alacritty
   fi
 fi
 
@@ -24,7 +24,7 @@ fi
 if ! command -v tmux >/dev/null 2>&1; then
   echo "Installing tmux..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y tmux
+    sudo apt-get install -y tmux
   fi
 fi
 
@@ -41,7 +41,7 @@ export TMUX_PLUGIN_MANAGER_PATH="~/.config/tmux/plugins/"
 if [ ! -f /usr/share/terminfo/a/alacritty ]; then
   echo "Installing ncurses-term..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y ncurses-term
+    sudo apt-get install -y ncurses-term
   fi
 fi
 
@@ -49,7 +49,7 @@ fi
 if ! command -v cssh >/dev/null 2>&1; then
   echo "Installing ClusterSSH..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y clusterssh
+    sudo apt-get install -y clusterssh
   fi
 fi
 
@@ -58,14 +58,14 @@ fi
 if ! command -v vim >/dev/null 2>&1; then
   echo "Installing vim..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y vim
+    sudo apt-get install -y vim
   fi
 fi
 
 if [ $NAME == "Ubuntu" ]; then
   if vim --version | grep "Small version without GUI" >/dev/null 2>&1; then
     echo "vim-tiny found, installing the real vim..."
-    sudo apt install -y vim
+    sudo apt-get install -y vim
   fi
 fi
 
@@ -73,20 +73,25 @@ fi
 if ! command -v nvim >/dev/null 2>&1; then
   echo "Installing neovim..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y neovim
+    sudo apt-get install -y neovim
   fi
 fi
 
 # - wm
 # -- qtile
-# TODO
+if ! command -v qtile >/dev/null 2>&1; then
+  echo "Qtile is not installed!"
+  if [ $NAME == "Ubuntu" ]; then
+    xdg-open https://github.com/deedoubledub/qtile-builder
+  fi
+fi
 
 # - display tools
 # -- feh
 if ! command -v feh >/dev/null 2>&1; then
   echo "Installing feh..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y feh
+    sudo apt-get install -y feh
   fi
 fi
 
@@ -95,7 +100,7 @@ fi
 if ! command -v arandr >/dev/null 2>&1; then
   echo "Installing arandr..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y arandr
+    sudo apt-get install -y arandr
   fi
 fi
 
@@ -106,7 +111,7 @@ fi
 if ! command -v xautolock >/dev/null 2>&1; then
   echo "Installing xautolock..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y xautolock
+    sudo apt-get install -y xautolock
   fi
 fi
 
@@ -118,7 +123,7 @@ fi
 if ! command -v rofi >/dev/null 2>&1; then
   echo "Installing rofi..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y rofi
+    sudo apt-get install -y rofi
   fi
 fi
 
@@ -126,7 +131,15 @@ fi
 if ! command -v dunst >/dev/null 2>&1; then
   echo "Installing dunst..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt install -y dunst
+    sudo apt-get install -y dunst
+  fi
+fi
+
+# -- gsimplecal
+if ! command -v gsimplecal >/dev/null 2>&1; then
+  echo "Installing gsimplecal..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt-get install -y gsimplecal
   fi
 fi
 
