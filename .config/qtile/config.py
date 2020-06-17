@@ -264,7 +264,6 @@ def primary_bar():
 # TODO: lockscreen
 
 # TODO: nmapplet
-# TODO: arandr
 # TODO: picom
 
 # TODO: gtk theme
@@ -325,3 +324,8 @@ wmname = "LG3D"
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
+
+# restart qtile on screen layout change (xrandr)
+@hook.subscribe.screen_change
+def restart_on_randr(qtile, ev):
+    qtile.cmd_restart()

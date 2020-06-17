@@ -1,4 +1,7 @@
 #!/bin/bash
 
+# set xrandr screen layout, link layout to the desired layout script
+xrandr/layout
+
 # random wallpaper
 feh --bg-fill ~/.local/share/wallpaper/$(ls ~/.local/share/wallpaper | shuf -n 1)
