@@ -183,6 +183,11 @@ def mpris():
 def play_toggle(qtile):
     qtile.cmd_spawn('playerctl play-pause')
 
+def weather():
+    return subprocess.run(['curl', 'wttr.in?format=%c+%t'],
+                          capture_output=True,
+                          text=True).stdout.strip('\n')
+
 def vpn_status():
     status=subprocess.run(['vpn-status.sh'], capture_output=True, text=True).stdout.strip('\n')
     if status == 'VPN up':
@@ -193,13 +198,9 @@ def vpn_status():
         return '\uF128'
 
 # widget separators
-def separator(side='', foreground='', background=''):
-    if side == 'left':
-        text=u'\uE0BA'
-    elif side == 'right':
-        text=u'\uE0BC'
+def separator(foreground='', background=''):
     return widget.TextBox(
-        text=text,
+        text='\uE0BA',
         width=28,
         fontsize=55,
         padding=-21,
@@ -239,46 +240,49 @@ def primary_bar():
             widget.GenPollText(func=mpris,
                                update_interval=1,
                                mouse_callbacks={'Button1': play_toggle}),
-            separator('left', palette[9], palette[1]),
+            separator(palette[9], palette[1]),
             widget.Systray(background=palette[9],
                            icon_size=24,
                            padding=10),
-            separator('right', palette[9], palette[10]),
+            separator(palette[10], palette[9]),
             widget.GenPollText(func=vpn_status,
                                update_interval=1,
                                fontsize=20,
                                background=palette[10]),
-            separator('left', palette[9], palette[10]),
+            separator(palette[9], palette[10]),
+            widget.GenPollText(func=weather,
+                               update_interval=3600,
+                               background=palette[9]),
+            separator(palette[10], palette[9]),
             widget.GenPollText(func=memory_usage,
                                update_interval=1,
-                               background=palette[9]),
-            separator('right', palette[9], palette[10]),
-            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[10]),
-            separator('right', palette[10], palette[9]),
+                               background=palette[10]),
+            separator(palette[9], palette[10]),
+            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
+            separator(palette[10], palette[9]),
             widget.CheckUpdates(distro='Ubuntu',
                                 restart_indicator=' \uFC07',
                                 update_interval=3600,
                                 custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'",
                                 display_format='\uF0AB {updates}',
-                                background=palette[9],
+                                background=palette[10],
                                 ),
-            separator('right', palette[9], palette[10]),
-            widget.TextBox(text='\uF027', fontsize=25, background=palette[10]),
-            widget.PulseVolume(background=palette[10]),
-            separator('left', palette[9], palette[10]),
+            separator(palette[9], palette[10]),
+            widget.TextBox(text='\uF027', fontsize=25, background=palette[9]),
+            widget.PulseVolume(background=palette[9]),
+            separator(palette[10], palette[9]),
             widget.Clock(format='\uF5ED %a %b %d',
-                         background=palette[9],
+                         background=palette[10],
                          mouse_callbacks={'Button1': open_calendar}),
-            separator('left', palette[10], palette[9]),
-            widget.Clock(format='\uF017 %I:%M %p', background=palette[10]),
-            separator('right', palette[10], palette[1]),
+            separator(palette[9], palette[10]),
+            widget.Clock(format='\uF017 %I:%M %p', background=palette[9]),
+            separator(palette[1], palette[9]),
         ],
         size=28,
         background=palette[1],
     )
 
 # TODO: battery widget on laptop
-# TODO: weather widget
 
 # TODO: notifications
 # TODO: lockscreen
