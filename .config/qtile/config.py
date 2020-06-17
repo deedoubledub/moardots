@@ -92,8 +92,6 @@ keys = [
     Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 2 toggle')),
 
     # TODO: open music player
-    # TODO?: open slack
-    # TODO?: open discord
     # TODO: lock screen
 ]
 
@@ -324,6 +322,16 @@ wmname = "LG3D"
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
+
+# start app in group
+@hook.subscribe.client_new
+def start_in_group(client):
+    # 'wm_class': 'group_name'
+    apps = {'slack': '\uF879', 'discord': '\uF879'}
+    wm_class = client.window.get_wm_class()[0]
+    group = apps.get(wm_class, None)
+    if group:
+        client.togroup(group)
 
 # restart qtile on screen layout change (xrandr)
 @hook.subscribe.screen_change
