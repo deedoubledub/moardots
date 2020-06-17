@@ -6,6 +6,9 @@
 # random wallpaper
 feh --bg-fill ~/.local/share/wallpaper/$(ls ~/.local/share/wallpaper | shuf -n 1)
 
+# network manager
+nm-applet &
+
 # start applications
 slack &
 discord &

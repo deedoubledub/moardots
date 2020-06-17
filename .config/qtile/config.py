@@ -90,6 +90,10 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn('pavolume down')),
     Key([], "XF86AudioMute", lazy.spawn('pavolume mute')),
     Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 2 toggle')),
+    Key([], "XF86AudioPlay", lazy.spawn('playerctl play-pause')),
+    Key([], "XF86AudioStop", lazy.spawn('playerctl stop')),
+    Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
+    Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
 
     # TODO: open music player
     # TODO: lock screen
@@ -163,8 +167,24 @@ def memory_usage():
 def open_calendar(qtile):
     qtile.cmd_spawn('gsimplecal')
 
+def mpris():
+    status=subprocess.run(['playerctl', 'status'], capture_output=True,
+                          text=True).stdout.strip('\n')
+    metadata=subprocess.run(['playerctl', 'metadata', '--format', '{{artist}} - {{title}}'],
+                            capture_output=True, text=True).stdout.strip('\n')
+    if status == 'Playing':
+        status = ' \uF04B'
+    elif status == 'Paused':
+        status = ' \uF04C'
+    else:
+        status = ''
+    return metadata + status
+
+def play_toggle(qtile):
+    qtile.cmd_spawn('playerctl play-pause')
+
 def vpn_status():
-    status=subprocess.run(["vpn-status.sh"], capture_output=True, text=True).stdout.strip('\n')
+    status=subprocess.run(['vpn-status.sh'], capture_output=True, text=True).stdout.strip('\n')
     if status == 'VPN up':
         return '\uF983'
     elif status == 'VPN down':
@@ -216,6 +236,9 @@ def primary_bar():
                                  inactive_color=palette[11],
                                  inactive_text='\uF62F'),
             widget.WindowName(for_current_screen=True),
+            widget.GenPollText(func=mpris,
+                               update_interval=1,
+                               mouse_callbacks={'Button1': play_toggle}),
             separator('left', palette[9], palette[1]),
             widget.Systray(background=palette[9],
                            icon_size=24,
@@ -255,13 +278,11 @@ def primary_bar():
     )
 
 # TODO: battery widget on laptop
-# TODO: mpris music widget
 # TODO: weather widget
 
 # TODO: notifications
 # TODO: lockscreen
 
-# TODO: nmapplet
 # TODO: picom
 
 # TODO: gtk theme

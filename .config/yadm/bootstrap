@@ -143,6 +143,14 @@ if ! command -v gsimplecal >/dev/null 2>&1; then
   fi
 fi
 
+# -- playerctl
+if ! command -v playerctl >/dev/null 2>&1; then
+  echo "Installing playerctl..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt-get install -y playerctl
+  fi
+fi
+
 # install fonts
 if [ ! -f "$HOME/.local/share/fonts/Roboto Mono Nerd Font Complete.ttf" ]; then
   echo "Installing missing font RobotoMono..."
