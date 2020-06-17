@@ -95,6 +95,9 @@ keys = [
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
 
+    # notification center
+    Key(["control"], "grave", lazy.spawn('notification-toggle')),
+
     # TODO: open music player
     # TODO: lock screen
 ]
@@ -189,7 +192,7 @@ def weather():
                           text=True).stdout.strip('\n')
 
 def vpn_status():
-    status=subprocess.run(['vpn-status.sh'], capture_output=True, text=True).stdout.strip('\n')
+    status=subprocess.run(['vpn-status'], capture_output=True, text=True).stdout.strip('\n')
     if status == 'VPN up':
         return '\uF983'
     elif status == 'VPN down':

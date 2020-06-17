@@ -9,6 +9,9 @@ feh --bg-fill ~/.local/share/wallpaper/$(ls ~/.local/share/wallpaper | shuf -n 1
 # network manager
 nm-applet &
 
+# notification center
+linux-notification-center &
+
 # start applications
 slack &
 discord &
