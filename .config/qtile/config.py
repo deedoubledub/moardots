@@ -146,7 +146,7 @@ layout_theme = {
 }
 
 layouts = [
-    layout.MonadTall(**layout_theme),
+    layout.MonadTall(ratio=0.65, **layout_theme),
     layout.MonadWide(**layout_theme),
     layout.Max(),
 ]
