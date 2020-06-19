@@ -95,9 +95,6 @@ keys = [
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
 
-    # notification center
-    Key(["control"], "grave", lazy.spawn('notification-toggle')),
-
     # TODO: open music player
     # TODO: lock screen
 ]
@@ -287,12 +284,13 @@ def primary_bar():
 
 # TODO: battery widget on laptop
 
-# TODO: notifications
 # TODO: lockscreen
 
 # TODO: picom
 
 # TODO: gtk theme
+
+# TODO: grid layout for cssh
 
 # screens
 screens = [
@@ -326,6 +324,8 @@ floating_layout = layout.Floating(
         {'wmclass': 'notification'},
         {'wmclass': 'splash'},
         {'wmclass': 'toolbar'},
+        {'wmclass': 'cssh'},
+        {'wmclass': '#menu#hosts'}, # clusterssh pop-out menu
         {'wmclass': 'XTerm'}, # clusterssh terms
         {'wmclass': 'gsimplecal'},
         {'wmclass': 'crx_nngceckbapebfimnlniiiahkandclblb'}, # bitwarden extension

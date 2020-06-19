@@ -127,13 +127,12 @@ if ! command -v rofi >/dev/null 2>&1; then
   fi
 fi
 
-# -- linux-notification-center
-if ! command -v linux-notification-center >/dev/null 2>&1; then
-  echo "Installing linux-notification-center..."
-  sudo wget \
-    https://github.com/phuhl/linux_notification_center/releases/download/1.7.2/deadd-notification-center \
-    -O /usr/bin/linux-notification-center
-  sudo chmod +x /usr/bin/linux-notification-center
+# -- dunst
+if ! command -v dunst >/dev/null 2>&1; then
+  echo "Installing dunst..."
+  if [ $NAME == "Ubuntu" ]; then
+    sudo apt-get install -y dunst
+  fi
 fi
 
 # -- gsimplecal
