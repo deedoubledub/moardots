@@ -151,6 +151,11 @@ if ! command -v playerctl >/dev/null 2>&1; then
   fi
 fi
 
+# -- themes
+[ ! -d ~/.themes ] && mkdir ~/.themes
+[ ! -d ~/.themes/Nordic ] && \
+  git clone https://github.com/EliverLara/Nordic.git ~/.themes/Nordic
+
 # install fonts
 if [ ! -f "$HOME/.local/share/fonts/Roboto Mono Nerd Font Complete.ttf" ]; then
   echo "Installing missing font RobotoMono..."

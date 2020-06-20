@@ -288,8 +288,6 @@ def primary_bar():
 
 # TODO: picom
 
-# TODO: gtk theme
-
 # TODO: grid layout for cssh
 
 # screens
