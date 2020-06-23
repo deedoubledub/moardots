@@ -95,7 +95,6 @@ if ! command -v feh >/dev/null 2>&1; then
   fi
 fi
 
-
 # -- arandr
 if ! command -v arandr >/dev/null 2>&1; then
   echo "Installing arandr..."
@@ -107,16 +106,13 @@ fi
 # -- picom
 # TODO
 
-# -- xautolock
-if ! command -v xautolock >/dev/null 2>&1; then
-  echo "Installing xautolock..."
+# -- screen locker
+if ! command -v xsecurelock >/dev/null 2>&1; then
+  echo "Installing xsecurelock..."
   if [ $NAME == "Ubuntu" ]; then
-    sudo apt-get install -y xautolock
+    sudo apt-get install -y xsecurelock
   fi
 fi
-
-# -- screen locker
-# TODO
 
 # - launcher, notifications, misc
 # -- rofi

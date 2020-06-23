@@ -1,19 +1,17 @@
 #!/bin/bash
-# locks the screen via i3lock-color
+# locks the screen via xsecurelock
 # suspends dunst notifications while locked
 
 # pause dunst
 killall -SIGUSR1 dunst
 
 # lock
-i3lock-color                \
-  --nofork                  \
-  --screen 0                \
-  --blur 7                  \
-  --radius=150              \
-  --clock                   \
-  --timestr="%-I:%M %p"     \
-  --datestr="%A, %B %-d %Y" \
+env XSECURELOCK_PASSWORD_PROMPT=time_hex \
+  XSECURELOCK_SHOW_DATETIME=1 \
+  XSECURELOCK_BLANK_TIMEOUT=30 \
+  XSECURELOCK_BLANK_DPMS_STATE=off \
+  XSECURELOCK_FONT='RobotoMono Nerd Font' \
+  xsecurelock
 
 # resume dunst
 killall -SIGUSR2 dunst

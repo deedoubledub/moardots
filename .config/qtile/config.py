@@ -6,10 +6,11 @@ import os
 import subprocess
 import psutil
 
-mod = "mod1"
-terminal = "alacritty"
-browser = "google-chrome"
-fm = "nautilus"
+mod = 'mod1'
+super = 'mod4'
+terminal = 'alacritty'
+browser = 'google-chrome'
+fm = 'nautilus'
 
 # theme palette
 palette = [
@@ -64,6 +65,9 @@ keys = [
     Key([mod], "Tab", lazy.next_layout()),
     Key([mod, "shift"], "Tab", lazy.prev_layout()),
 
+    # lockscreen
+    Key([super], "l", lazy.spawn([os.path.expanduser('~/.local/bin/lock.sh')])),
+
     # restart qtile
     Key([mod, "shift"], "r", lazy.restart()),
 
@@ -96,7 +100,6 @@ keys = [
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
 
     # TODO: open music player
-    # TODO: lock screen
 ]
 
 # workspaces
@@ -283,8 +286,6 @@ def primary_bar():
     )
 
 # TODO: battery widget on laptop
-
-# TODO: lockscreen
 
 # TODO: picom
 
