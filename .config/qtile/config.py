@@ -267,6 +267,7 @@ def primary_bar():
                                 restart_indicator=' \uFC07',
                                 update_interval=3600,
                                 custom_command="apt-get -s dist-upgrade | awk '/^Inst/ { print $2 }'",
+                                execute="alacritty -e update-packages",
                                 display_format='\uF0AB {updates}',
                                 background=palette[10],
                                 ),
