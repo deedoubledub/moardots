@@ -105,7 +105,7 @@ keys = [
 # workspaces
 # workspace names
 group_names = [("\uF484", {'layout': 'monadtall'}),
-               ("\uF489", {'layout': 'monadtall'}),
+               ("\uF489", {'layout': 'matrix'}),
                ("\uF07C", {'layout': 'monadtall'}),
                ("\uF448", {'layout': 'monadtall'}),
                ("\uF879", {'layout': 'monadtall'})]
@@ -151,6 +151,7 @@ layout_theme = {
 layouts = [
     layout.MonadTall(ratio=0.65, **layout_theme),
     layout.MonadWide(**layout_theme),
+    layout.Matrix(**layout_theme),
     layout.Max(),
 ]
 
@@ -290,8 +291,6 @@ def primary_bar():
 
 # TODO: picom
 
-# TODO: grid layout for cssh
-
 # screens
 screens = [
     Screen(top=primary_bar()),
@@ -324,9 +323,6 @@ floating_layout = layout.Floating(
         {'wmclass': 'notification'},
         {'wmclass': 'splash'},
         {'wmclass': 'toolbar'},
-        {'wmclass': 'cssh'},
-        {'wmclass': '#menu#hosts'}, # clusterssh pop-out menu
-        {'wmclass': 'XTerm'}, # clusterssh terms
         {'wmclass': 'gsimplecal'},
         {'wmclass': 'crx_nngceckbapebfimnlniiiahkandclblb'}, # bitwarden extension
     ],
@@ -355,7 +351,13 @@ def start_once():
 @hook.subscribe.client_new
 def start_in_group(client):
     # 'wm_class': 'group_name'
-    apps = {'slack': '\uF879', 'discord': '\uF879'}
+    apps = {'slack': '\uF879',
+            'discord': '\uF879',
+            'xterm': '\uF489',
+            'XTerm': '\uF489',
+            'Cssh': '\uF489',
+            'cssh': '\uF489',
+            }
     wm_class = client.window.get_wm_class()[0]
     group = apps.get(wm_class, None)
     if group:
