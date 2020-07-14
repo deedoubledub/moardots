@@ -108,7 +108,7 @@ group_names = [("\uF484", {'layout': 'monadtall'}),
                ("\uF489", {'layout': 'matrix'}),
                ("\uF07C", {'layout': 'monadtall'}),
                ("\uF448", {'layout': 'monadtall'}),
-               ("\uF879", {'layout': 'monadtall'})]
+               ("\uF879", {'layout': 'matrix'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
