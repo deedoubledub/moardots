@@ -4,6 +4,9 @@ window:
   padding:
     x: 2
     y: 2
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
 
 font:
   normal:
@@ -50,9 +53,6 @@ colors:
     magenta: '#B48EAD'
     cyan:    '#8FBCBB'
     white:   '#ECEFF4'
-
-# Allow terminal applications to change Alacritty's window title.
-dynamic_title: true
 
 key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste            }
