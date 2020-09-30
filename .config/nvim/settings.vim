@@ -37,3 +37,8 @@ set smartcase          " override ignorecase if upper case character is used
 
 " disable comments continuing to next line
 autocmd BufNewFile,BufWinEnter * setlocal formatoptions-=cro
+
+" spelling and completion
+set spell spelllang=en_us " enable spell check
+set complete+=kspell      " enable auto-completion with ctrl+p / ctrl+s
+set spellcapcheck=        " ignore lowercase at sentence start
