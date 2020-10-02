@@ -42,3 +42,6 @@ autocmd BufNewFile,BufWinEnter * setlocal formatoptions-=cro
 set spell spelllang=en_us " enable spell check
 set complete+=kspell      " enable auto-completion with ctrl+p / ctrl+s
 set spellcapcheck=        " ignore lowercase at sentence start
+
+" filetype customization
+autocmd BufNewFile,BufRead *.eyaml set syntax=yaml
