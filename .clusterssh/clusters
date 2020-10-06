@@ -12,4 +12,4 @@ remote csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu csadmin
 
 openstack csadmin@virt1.cs.allegheny.edu csadmin@virt2.cs.allegheny.edu csadmin@virt3.cs.allegheny.edu csadmin@virt4.cs.allegheny.edu
 
-deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com dwagner@bitwarden.deedoubledub.com
+deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com
