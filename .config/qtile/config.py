@@ -11,6 +11,7 @@ super = 'mod4'
 terminal = 'alacritty'
 browser = 'google-chrome'
 fm = 'nautilus'
+music = 'YouTube-Music-Desktop-App-1.13.0.AppImage'
 
 # theme palette
 palette = [
@@ -85,6 +86,9 @@ keys = [
 
     # file manager
     Key([mod], "o", lazy.spawn(fm)),
+
+    # music player
+    Key([mod], "p", lazy.spawn(music)),
 
     # flameshot
     Key([mod], "Print", lazy.spawn('flameshot gui')),
@@ -353,6 +357,7 @@ def start_in_group(client):
     # 'wm_class': 'group_name'
     apps = {'slack': '\uF879',
             'discord': '\uF879',
+            'youtube-music-desktop-app': '\uF879',
             'xterm': '\uF489',
             'XTerm': '\uF489',
             'Cssh': '\uF489',
