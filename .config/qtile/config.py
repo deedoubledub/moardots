@@ -9,7 +9,7 @@ import psutil
 mod = 'mod1'
 super = 'mod4'
 terminal = 'alacritty'
-browser = 'google-chrome'
+browser = 'firefox'
 fm = 'nautilus'
 music = 'YouTube-Music-Desktop-App-1.13.0.AppImage'
 
