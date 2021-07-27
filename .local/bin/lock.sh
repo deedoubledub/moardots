@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # locks the screen via xsecurelock
 # suspends dunst notifications while locked
 

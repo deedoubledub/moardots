@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # adjusts the volume of the active pulse audio sink
 
 active=$(pacmd list-sinks | awk '/\* index:/ {print $3}')

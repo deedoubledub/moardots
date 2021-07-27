@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # resumes dunst notifications
 
 # resume dunst
