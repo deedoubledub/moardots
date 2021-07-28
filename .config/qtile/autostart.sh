@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # set xrandr screen layout, link layout to the desired layout script
 ~/.config/qtile/xrandr/layout
