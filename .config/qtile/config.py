@@ -11,7 +11,7 @@ super = 'mod4'
 terminal = 'alacritty'
 browser = 'firefox'
 fm = 'nautilus'
-music = 'YouTube-Music-Desktop-App-1.13.0.AppImage'
+music = 'ytmdesktop'
 
 # theme palette
 palette = [
@@ -102,8 +102,6 @@ keys = [
     Key([], "XF86AudioStop", lazy.spawn('playerctl stop')),
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
-
-    # TODO: open music player
 ]
 
 # workspaces

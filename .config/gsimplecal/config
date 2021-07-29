@@ -4,3 +4,4 @@ clock_label = Local
 clock_tz =
 clock_label = UTC
 clock_tz = :UTC
+mainwindow_yoffset = 30
