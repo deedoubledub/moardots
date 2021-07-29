@@ -196,15 +196,6 @@ def weather():
                           capture_output=True,
                           text=True).stdout.strip('\n')
 
-def vpn_status():
-    status=subprocess.run(['vpn-status'], capture_output=True, text=True).stdout.strip('\n')
-    if status == 'VPN up':
-        return '\uF983'
-    elif status == 'VPN down':
-        return '\uF65A'
-    else:
-        return '\uF128'
-
 # widget separators
 def separator(foreground='', background=''):
     return widget.TextBox(
@@ -252,13 +243,6 @@ def primary_bar():
             widget.Systray(background=palette[10],
                            icon_size=24,
                            padding=10),
-            separator(palette[9], palette[10]),
-            widget.GenPollText(func=vpn_status,
-                               update_interval=1,
-                               fontsize=20,
-                               background=palette[9]),
-            separator(palette[10], palette[9]),
-            widget.BitcoinTicker(background=palette[10]),
             separator(palette[9], palette[10]),
             widget.GenPollText(func=weather,
                                update_interval=3600,
