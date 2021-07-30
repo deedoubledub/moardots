@@ -102,6 +102,10 @@ keys = [
     Key([], "XF86AudioStop", lazy.spawn('playerctl stop')),
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
+
+    # laptop screen brightness
+    Key([], "XF86MonBrightnessUp", lazy.spawn('light -A 10')),
+    Key([], "XF86MonBrightnessDown", lazy.spawn('light -U 10')),
 ]
 
 # workspaces
