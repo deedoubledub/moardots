@@ -94,10 +94,10 @@ keys = [
     Key([mod], "Print", lazy.spawn('flameshot gui')),
 
     # media keys
-    Key([], "XF86AudioRaiseVolume", lazy.spawn('pavolume up')),
-    Key([], "XF86AudioLowerVolume", lazy.spawn('pavolume down')),
-    Key([], "XF86AudioMute", lazy.spawn('pavolume mute')),
-    Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 2 toggle')),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume up'))),
+    Key([], "XF86AudioLowerVolume", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume down'))),
+    Key([], "XF86AudioMute", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume mute'))),
+    Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 1 toggle')),
     Key([], "XF86AudioPlay", lazy.spawn('playerctl play-pause')),
     Key([], "XF86AudioStop", lazy.spawn('playerctl stop')),
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
