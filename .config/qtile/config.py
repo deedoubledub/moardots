@@ -368,5 +368,5 @@ def start_in_group(client):
 
 # restart qtile on screen layout change (xrandr)
 @hook.subscribe.screen_change
-def restart_on_randr(qtile, ev):
-    qtile.cmd_restart()
+def restart_on_randr(ev):
+    libqtile.qtile.cmd_restart()
