@@ -22,6 +22,3 @@ fi
 
 # restart qtile
 /run/wrappers/bin/su $user -c "qtile-cmd -o cmd -f restart"
-
-# rescale wallpaper
-DISPLAY=:0 /run/wrappers/bin/su $user -c "sh /home/$user/.fehbg"

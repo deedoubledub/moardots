@@ -111,10 +111,10 @@ keys = [
 # workspaces
 # workspace names
 group_names = [("\uF484", {'layout': 'monadtall'}),
-               ("\uF489", {'layout': 'matrix'}),
-               ("\uF07C", {'layout': 'monadtall'}),
-               ("\uF448", {'layout': 'monadtall'}),
-               ("\uF879", {'layout': 'matrix'})]
+               ("\uF489", {'layout': 'monadtall'}),
+               ("\uF41E", {'layout': 'monadtall'}),
+               ("\uF922", {'layout': 'monadtall'}),
+               ("\uF879", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -247,15 +247,15 @@ def primary_bar():
                            padding=10),
             separator(palette[9], palette[10]),
             widget.GenPollText(func=weather,
-                               update_interval=3600,
+                               update_interval=1200,
                                background=palette[9]),
             separator(palette[10], palette[9]),
-            #widget.GenPollText(func=memory_usage,
-            #                   update_interval=1,
-            #                   background=palette[10]),
-            #separator(palette[9], palette[10]),
-            #widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
-            #separator(palette[10], palette[9]),
+            widget.GenPollText(func=memory_usage,
+                               update_interval=1,
+                               background=palette[10]),
+            separator(palette[9], palette[10]),
+            widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
+            separator(palette[10], palette[9]),
             widget.TextBox(text='\uF027', fontsize=25, background=palette[10]),
             widget.Volume(step=5,
                           background=palette[10]),
@@ -289,10 +289,6 @@ def primary_bar():
         size=28,
         background=palette[1],
     )
-
-# TODO: battery widget on laptop
-
-# TODO: picom
 
 # screens
 screens = [
@@ -349,6 +345,13 @@ wmname = "LG3D"
 def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
+
+# on every qtile restart
+@hook.subscribe.startup_complete
+def startup():
+    # rescale wallpaper
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.fehbg'])
 
 # start app in group
 @hook.subscribe.client_new
