@@ -1,3 +1,3 @@
 #!/bin/sh
 echo "setting layout: laptop"
-xrandr --auto
+xrandr -d :0 --auto
