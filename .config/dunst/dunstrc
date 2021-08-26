@@ -29,7 +29,8 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "750x1+905+30"
+    #geometry = "750x1+905+30"
+    geometry = "500x1-5+28"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -163,7 +164,7 @@
     icon_position = right
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 0
+    max_icon_size = 96
 
     # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/scalable/status/:/usr/share/icons/Adwaita/scalable/devices/
