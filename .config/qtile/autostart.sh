@@ -8,6 +8,6 @@ feh --bg-fill ~/.local/share/wallpaper/$(ls ~/.local/share/wallpaper | shuf -n 1
 
 # start applications
 nm-applet &
+blueman-applet &
 dunst &
-slack &
 discord &
