@@ -202,7 +202,7 @@ def weather():
     wttr=subprocess.run(['curl', 'wttr.in?format=%c+%t'],
                           capture_output=True,
                           text=True).stdout.strip('\n')
-    if "Unknown" in wttr:
+    if "Unknown" in wttr or wttr == '':
         wttr = '\uF0C2 '
     return wttr
 
