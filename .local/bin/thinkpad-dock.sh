@@ -10,7 +10,7 @@ if [[ "$ACTION" == "add"  ]]; then
 elif [[ "$ACTION" == "remove" ]]; then
   # undock
   logger -t DOCK "laptop undocked"
-  layout=laptop
+  layout=auto
 
 else
   logger -t DOCK "laptop dock state unknown"
