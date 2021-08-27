@@ -3,10 +3,15 @@
 # set xrandr layout
 if lsusb | grep -q 17ef:1010; then
   # autoselect docked layout when docked
-  /home/dwagner/.config/qtile/xrandr/docked.sh
+  ~/.config/qtile/xrandr/docked.sh
 else
-  # use defined layout when not docked
-  /home/dwagner/.config/qtile/xrandr/layout
+  if [ -f ~/.config/qtile/xrandr/layout ]; then
+    # use defined layout when not docked if it exists
+    ~/.config/qtile/xrandr/layout
+  else
+    # use auto as a fallback
+    ~/.config/qtile/xrandr/auto.sh
+  fi
 fi
 
 # random wallpaper
