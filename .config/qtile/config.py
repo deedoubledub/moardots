@@ -114,7 +114,8 @@ group_names = [("\uF484", {'layout': 'monadtall'}),
                ("\uF489", {'layout': 'monadtall'}),
                ("\uF41E", {'layout': 'monadtall'}),
                ("\uF922", {'layout': 'monadtall'}),
-               ("\uF879", {'layout': 'monadtall'})]
+               ("\uF879", {'layout': 'monadtall'}),
+               ("\uF822", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -126,9 +127,13 @@ def go_to_group(group):
         if group in [name[0] for name in group_names][0 : 4]:
             qtile.cmd_to_screen(0)
             qtile.groups_map[group].cmd_toscreen(toggle=False)
-        # workspaces 5+ on secondary screen
-        else:
+        # workspace 5 on secondary screen
+        elif group in [name[0] for name in group_names][5]:
             qtile.cmd_to_screen(1)
+            qtile.groups_map[group].cmd_toscreen(toggle=False)
+        # workspace 6 on laptop screen
+        else:
+            qtile.cmd_to_screen(2)
             qtile.groups_map[group].cmd_toscreen(toggle=False)
     return f
 
@@ -194,9 +199,12 @@ def play_toggle(qtile):
     qtile.cmd_spawn('playerctl play-pause')
 
 def weather():
-    return subprocess.run(['curl', 'wttr.in?format=%c+%t'],
+    wttr=subprocess.run(['curl', 'wttr.in?format=%c+%t'],
                           capture_output=True,
                           text=True).stdout.strip('\n')
+    if "Unknown" in wttr:
+        wttr = '\uF0C2 '
+    return wttr
 
 # widget separators
 def separator(foreground='', background=''):
@@ -218,10 +226,9 @@ def primary_bar():
                 scale=0.66,
             ),
             widget.GroupBox(
-                padding_x=5,
-                margin_x=5,
-                spacing=10,
-                fontsize=18,
+                padding_x=10,
+                spacing=5,
+                fontsize=20,
                 disable_drag=True,
                 use_mouse_wheel=False,
                 background=palette[1],
@@ -248,6 +255,7 @@ def primary_bar():
             separator(palette[9], palette[10]),
             widget.GenPollText(func=weather,
                                update_interval=1200,
+                               mouse_callbacks={'Button1': weather},
                                background=palette[9]),
             separator(palette[10], palette[9]),
             widget.GenPollText(func=memory_usage,
