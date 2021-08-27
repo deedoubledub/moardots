@@ -1,17 +1,1 @@
-labs csadmin@aldenv151.allegheny.edu csadmin@aldenv152.allegheny.edu csadmin@aldenv153.allegheny.edu csadmin@aldenv154.allegheny.edu csadmin@aldenv155.allegheny.edu csadmin@aldenv156.allegheny.edu csadmin@aldenv157.allegheny.edu csadmin@aldenv158.allegheny.edu csadmin@aldenv159.allegheny.edu csadmin@aldenv160.allegheny.edu csadmin@aldenv161.allegheny.edu csadmin@aldenv162.allegheny.edu csadmin@aldenv163.allegheny.edu csadmin@aldenv164.allegheny.edu csadmin@aldenv165.allegheny.edu csadmin@aldenv166.allegheny.edu csadmin@aldenv167.allegheny.edu csadmin@aldenv168.allegheny.edu csadmin@aldenv169.allegheny.edu csadmin@aldenv170.allegheny.edu csadmin@aldenv171.allegheny.edu csadmin@aldenv172.allegheny.edu
-
-alden101 csadmin@aldenv152.allegheny.edu csadmin@aldenv153.allegheny.edu csadmin@aldenv154.allegheny.edu csadmin@aldenv155.allegheny.edu csadmin@aldenv156.allegheny.edu csadmin@aldenv157.allegheny.edu csadmin@aldenv158.allegheny.edu csadmin@aldenv159.allegheny.edu csadmin@aldenv160.allegheny.edu
-
-alden103 csadmin@aldenv161.allegheny.edu csadmin@aldenv162.allegheny.edu csadmin@aldenv163.allegheny.edu csadmin@aldenv164.allegheny.edu csadmin@aldenv165.allegheny.edu csadmin@aldenv166.allegheny.edu csadmin@aldenv167.allegheny.edu csadmin@aldenv168.allegheny.edu csadmin@aldenv169.allegheny.edu csadmin@aldenv170.allegheny.edu csadmin@aldenv171.allegheny.edu csadmin@aldenv172.allegheny.edu
-
-staff csadmin@aldenv173.allegheny.edu csadmin@aldenv174.allegheny.edu csadmin@aldenv175.allegheny.edu csadmin@aldenv176.allegheny.edu csadmin@aldenv177.allegheny.edu csadmin@aldenv178.allegheny.edu
-
-servers csadmin@foreman.cs.allegheny.edu csadmin@aptly.cs.allegheny.edu csadmin@monitor.cs.allegheny.edu csadmin@openldap.cs.allegheny.edu csadmin@gitlab.cs.allegheny.edu csadmin@backup.cs.allegheny.edu csadmin@www.cs.allegheny.edu csadmin@nfs1.cs.allegheny.edu csadmin@ganeti1.cs.allegheny.edu csadmin@ganeti2.cs.allegheny.edu csadmin@guacamole.cs.allegheny.edu csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu
-
-remote csadmin@remote1.cs.allegheny.edu csadmin@remote2.cs.allegheny.edu
-
 openstack csadmin@virt1.cs.allegheny.edu csadmin@virt2.cs.allegheny.edu csadmin@virt3.cs.allegheny.edu csadmin@virt4.cs.allegheny.edu
-
-deedoubledub dwagner@dl.deedoubledub.com dwagner@plex.deedoubledub.com dwagner@proxy.deedoubledub.com dwagner@unifi.deedoubledub.com
-
-k3s dwagner@10.0.0.91 dwagner@10.0.0.92 dwagner@10.0.0.93
