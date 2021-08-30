@@ -367,7 +367,7 @@ def start_in_group(client):
     # 'wm_class': 'group_name'
     apps = {'slack': '\uF879',
             'discord': '\uF879',
-            'youtube-music-desktop-app': '\uF879',
+            'youtube-music-desktop-app': '\uF822',
             'xterm': '\uF489',
             'XTerm': '\uF489',
             'Cssh': '\uF489',
