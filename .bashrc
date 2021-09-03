@@ -4,7 +4,7 @@
 
 export EDITOR=nvim
 export TERMINAL=alacritty
-export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/go/bin
 
 #- - - - - - - - - - - - - - - - - - -#
 #                             general #
