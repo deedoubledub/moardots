@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# updates NixOS
+
+sudo nix-channel --update
+sudo nixos-rebuild switch
