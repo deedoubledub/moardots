@@ -15,3 +15,6 @@ env XSECURELOCK_PASSWORD_PROMPT=time_hex \
 
 # resume dunst
 killall -SIGUSR2 dunst
+
+# shuffle wallpaper
+~/.local/bin/wallpaper-shuffle

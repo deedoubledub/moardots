@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-echo "Updating packages..."
-echo "sudo apt update && sudo apt dist-upgrade && sudo apt autoremove"
-
-sudo apt update && sudo apt dist-upgrade && sudo apt autoremove
