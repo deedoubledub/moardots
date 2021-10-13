@@ -3,3 +3,5 @@
 
 sudo nix-channel --update
 sudo nixos-rebuild switch
+sudo nix-env --delete-generations +5
+sudo nix-store --gc
