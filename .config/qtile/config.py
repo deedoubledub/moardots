@@ -75,6 +75,9 @@ keys = [
     # quit qtile
     Key([mod, "shift"], "Escape", lazy.shutdown()),
 
+    # powermenu
+    Key([mod], "Escape", lazy.spawn([os.path.expanduser('~/.local/bin/powermenu.sh')])),
+
     # open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
 

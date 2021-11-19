@@ -1,0 +1,89 @@
+configuration {
+    font:       "RobotoMono Nerd Font 18";
+    show-icons: false;
+}
+
+* {
+    background:     #4c566a;
+    background-alt: #2e3440;
+    foreground:     #ECEFF4;
+    border:         #d8dee9;
+    border-alt:     #a3be8c;
+    selected:       #5e81ac;
+}
+
+window {
+    background-color:   @background;
+    text-color:         @foreground;
+    height:             30%;
+    width:              30%;
+    location:           center;
+    x-offset:           0;
+    y-offset:           0;
+}
+
+prompt {
+	  background-color: @background-alt;
+	  text-color:       @foreground;
+}
+
+textbox-prompt-colon {
+	expand:           false;
+	str:              "Adios!";
+	background-color: @background-alt;
+	text-color:       @foreground;
+  padding:          0.5% 0.5% 0.5% 0%;
+}
+
+inputbar {
+    children:           [ textbox-prompt-colon, prompt ];
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    expand:             false;
+    border:             0.2% 4% 0.2% 0.2%;
+    border-radius:      100% 100% 100% 100%;
+    border-color:       @border-alt;
+    margin:             0% 18% 0% 0%;
+    padding:            0.5%;
+    position:           center;
+}
+
+listview {
+    background-color:   @background;
+    margin:             0% 0% 0% 0%;
+    spacing:            3%;
+    cycle:              true;
+    layout:             horizontal;
+}
+
+mainbox {
+    background-color:   @background;
+    children:           [ inputbar, listview ];
+    spacing:            3.5%;
+    padding:            4% 0% 0% 2%;
+}
+
+element {
+    background-color:   @background-alt;
+    text-color:         @foreground;
+    orientation:        horizontal;
+    border-radius:      100%;
+}
+
+element-text {
+    margin:             50px 54px 50px 54px;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:   @background-alt;
+    text-color:         @foreground;
+}
+
+element selected {
+    background-color:   @selected;
+    text-color:         @foreground;
+    border:             0.2% 0.2% 0.2% 0.2%;
+    border-radius:      100%;
+    border-color:       @border;
+}
