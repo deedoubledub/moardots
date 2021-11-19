@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Options
-logout="\uF842"
-reboot="\uFC07"
-shutdown="\uF011"
+logout=""
+reboot="ﰇ"
+shutdown=""
 options="$logout\n$reboot\n$shutdown"
 
 action="$(echo -e "$options" | rofi -dmenu -i -p '' -theme ~/.config/rofi/powermenu.rasi)"
