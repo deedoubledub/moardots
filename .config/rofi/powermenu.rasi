@@ -15,8 +15,8 @@ configuration {
 window {
     background-color:   @background;
     text-color:         @foreground;
-    height:             30%;
-    width:              30%;
+    width:              300px;
+    height:             370px;
     location:           center;
     x-offset:           0;
     y-offset:           0;
@@ -32,7 +32,7 @@ textbox-prompt-colon {
 	str:              "Adios!";
 	background-color: @background-alt;
 	text-color:       @foreground;
-  padding:          0.5% 0.5% 0.5% 0%;
+  padding:          10px 10px 10px 10px;
 }
 
 inputbar {
@@ -40,27 +40,26 @@ inputbar {
     background-color:   @background-alt;
     text-color:         @foreground;
     expand:             false;
-    border:             0.2% 4% 0.2% 0.2%;
-    border-radius:      100% 100% 100% 100%;
+    border:             2px 120px 2px 2px;
+    border-radius:      100%;
     border-color:       @border-alt;
-    margin:             0% 18% 0% 0%;
-    padding:            0.5%;
+    margin:             0px 0px 0px 0px;
+    padding:            5px;
     position:           center;
 }
 
 listview {
     background-color:   @background;
-    margin:             0% 0% 0% 0%;
-    spacing:            3%;
+    margin:             0px 0px 0px 0px;
+    spacing:            20px;
     cycle:              true;
-    layout:             horizontal;
 }
 
 mainbox {
     background-color:   @background;
     children:           [ inputbar, listview ];
-    spacing:            3.5%;
-    padding:            4% 0% 0% 2%;
+    spacing:            20px;
+    padding:            20px 20px 20px 20px;
 }
 
 element {
@@ -71,7 +70,7 @@ element {
 }
 
 element-text {
-    margin:             50px 54px 50px 54px;
+    margin:             20px;
 }
 
 element normal.active,
@@ -83,7 +82,7 @@ element alternate.active {
 element selected {
     background-color:   @selected;
     text-color:         @foreground;
-    border:             0.2% 0.2% 0.2% 0.2%;
+    border:             3px 3px 3px 3px;
     border-radius:      100%;
     border-color:       @border;
 }
