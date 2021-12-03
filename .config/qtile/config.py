@@ -125,12 +125,12 @@ keys = [
 
 # workspaces
 # workspace names
-group_names = [("\uF484", {'layout': 'monadtall'}),
-               ("\uF489", {'layout': 'monadtall'}),
-               ("\uF41E", {'layout': 'monadtall'}),
-               ("\uF922", {'layout': 'monadtall'}),
-               ("\uF879", {'layout': 'monadtall'}),
-               ("\uF822", {'layout': 'monadtall'})]
+group_names = [("1", {'label': "\uF484", 'layout': 'monadtall'}),
+               ("2", {'label': "\uF489", 'layout': 'monadtall'}),
+               ("3", {'label': "\uF41E", 'layout': 'monadtall'}),
+               ("4", {'label': "\uF922", 'layout': 'monadtall'}),
+               ("5", {'label': "\uF879", 'layout': 'monadtall'}),
+               ("6", {'label': "\uF822", 'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -139,16 +139,16 @@ groups = [Group(name, **kwargs) for name, kwargs in group_names]
 def go_to_group(group):
     def f(qtile):
         # workspaces 1-4 on primary screen
-        if group in [name[0] for name in group_names][0 : 4]:
+        if group in '1234':
             qtile.cmd_to_screen(0)
             qtile.groups_map[group].cmd_toscreen(toggle=False)
         # workspace 5 on secondary screen
-        elif group in [name[0] for name in group_names][5]:
-            qtile.cmd_to_screen(1)
+        elif group in '5':
+            qtile.cmd_to_screen(2)
             qtile.groups_map[group].cmd_toscreen(toggle=False)
         # workspace 6 on laptop screen
         else:
-            qtile.cmd_to_screen(2)
+            qtile.cmd_to_screen(1)
             qtile.groups_map[group].cmd_toscreen(toggle=False)
     return f
 
@@ -370,12 +370,12 @@ def randr_change(qtile):
 @hook.subscribe.client_new
 def start_in_group(client):
     # 'wm_class': 'group_name'
-    apps = {'discord': '\uF879',
-            'youtube-music-desktop-app': '\uF822',
-            'xterm': '\uF489',
-            'XTerm': '\uF489',
-            'Cssh': '\uF489',
-            'cssh': '\uF489',
+    apps = {'discord': '5',
+            'youtube-music-desktop-app': '6',
+            'xterm': '2',
+            'XTerm': '2',
+            'Cssh': '2',
+            'cssh': '2',
             }
     wm_class = client.window.get_wm_class()[0]
     group = apps.get(wm_class, None)
