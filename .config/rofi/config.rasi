@@ -1,7 +1,5 @@
 configuration {
 	modi: "drun";
-	width: 30;
-	lines: 10;
 	font: "RobotoMono Nerd Font 18";
 	show-icons: true;
 	sort: true;

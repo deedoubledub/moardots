@@ -3,7 +3,7 @@
 # suspends dunst notifications while locked
 
 # pause dunst
-killall -SIGUSR1 dunst
+dunstctl set-paused true
 
 # lock
 env XSECURELOCK_PASSWORD_PROMPT=time_hex \
@@ -14,7 +14,7 @@ env XSECURELOCK_PASSWORD_PROMPT=time_hex \
   xsecurelock
 
 # resume dunst
-killall -SIGUSR2 dunst
+dunstctl set-paused false
 
 # shuffle wallpaper
 ~/.local/bin/wallpaper-shuffle

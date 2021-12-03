@@ -13,11 +13,12 @@ configuration {
 }
 
 window {
+    location:           center;
+    anchor:             center;
     background-color:   @background;
     text-color:         @foreground;
     width:              300px;
     height:             370px;
-    location:           center;
     x-offset:           0;
     y-offset:           0;
 }
@@ -70,6 +71,8 @@ element {
 }
 
 element-text {
+    background-color:   inherit;
+    text-color:         inherit;
     margin:             20px;
 }
 

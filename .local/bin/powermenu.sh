@@ -10,7 +10,7 @@ action="$(echo "$options" | rofi -sep '|' -dmenu -i -p '' -theme ~/.config/rofi/
 
 case $action in
   $logout)
-    qtile-cmd -o cmd -f shutdown
+    qtile cmd-obj -o cmd -f shutdown
     ;;
   $reboot)
     systemctl reboot

@@ -1,6 +1,6 @@
-from libqtile.config import Key, Screen, Group, ScratchPad, DropDown, Drag, Click
+from libqtile.config import Key, Screen, Group, ScratchPad, DropDown, Drag, Click, Match
 from libqtile.lazy import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import layout, bar, widget, hook, qtile
 from typing import List  # noqa: F401
 import os
 import subprocess
@@ -12,6 +12,7 @@ terminal = 'alacritty'
 browser = 'firefox'
 fm = 'nautilus'
 music = 'ytmdesktop'
+home = os.path.expanduser('~')
 
 # theme palette
 palette = [
@@ -69,8 +70,9 @@ keys = [
     # lockscreen
     Key([super], "l", lazy.spawn([os.path.expanduser('~/.local/bin/lock.sh')])),
 
-    # restart qtile
-    Key([mod, "shift"], "r", lazy.restart()),
+    # restart qtile  -- BUG: crashes qtile in v0.18.1
+    # lazy.reload_config will be available in v0.18.2
+    #Key([mod, "shift"], "r", lazy.restart()),
 
     # quit qtile
     Key([mod, "shift"], "Escape", lazy.shutdown()),
@@ -95,6 +97,11 @@ keys = [
 
     # flameshot
     Key([mod], "Print", lazy.spawn('flameshot gui')),
+
+    # dunst
+    Key(["control"], "space", lazy.spawn('dunstctl close')),
+    Key(["control", "shift"], "space", lazy.spawn('dunstctl close-all')),
+    Key(["control"], "grave", lazy.spawn('dunstctl history-pop')),
 
     # media keys
     Key([], "XF86AudioLowerVolume", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume down'))),
@@ -187,7 +194,7 @@ def memory_usage():
     mem=psutil.virtual_memory()
     return '\uF2DB {:02.0f}%'.format(mem.used / mem.total * 100)
 
-def open_calendar(qtile):
+def open_calendar():
     qtile.cmd_spawn('gsimplecal')
 
 def mpris():
@@ -310,6 +317,7 @@ def primary_bar():
 screens = [
     Screen(top=primary_bar()),
     Screen(),
+    Screen(),
 ]
 
 # mod + left click-drag, set floating
@@ -319,32 +327,23 @@ mouse = [
          start=lazy.window.get_position()),
     Drag([mod], "Button3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
-main = None
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
-floating_layout = layout.Floating(
-    float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client
-        {'wmclass': 'confirm'},
-        {'wmclass': 'dialog'},
-        {'wmclass': 'download'},
-        {'wmclass': 'error'},
-        {'wmclass': 'file_progress'},
-        {'wmclass': 'notification'},
-        {'wmclass': 'splash'},
-        {'wmclass': 'toolbar'},
-        {'wmclass': 'gsimplecal'},
-        {'wmclass': 'crx_nngceckbapebfimnlniiiahkandclblb'}, # bitwarden extension
-    ],
-    **layout_theme,
-)
+floating_layout = layout.Floating(float_rules=[
+    # Run the utility of `xprop` to see the wm class and name of an X client
+    *layout.Floating.default_float_rules,
+    Match(wm_class='gsimplecal'),
+    Match(wm_class='crx_nngceckbapebfimnlniiiahkandclblb'), # bitwarden extension
+], **layout_theme)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+reconfigure_screens = True
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
@@ -359,22 +358,19 @@ wmname = "LG3D"
 # startup applications
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
-# on every qtile restart
-@hook.subscribe.startup_complete
-def startup():
+# xrandr layout change
+@hook.subscribe.screen_change
+def randr_change(qtile):
     # rescale wallpaper
-    home = os.path.expanduser('~')
     subprocess.call([home + '/.fehbg'])
 
 # start app in group
 @hook.subscribe.client_new
 def start_in_group(client):
     # 'wm_class': 'group_name'
-    apps = {'slack': '\uF879',
-            'discord': '\uF879',
+    apps = {'discord': '\uF879',
             'youtube-music-desktop-app': '\uF822',
             'xterm': '\uF489',
             'XTerm': '\uF489',
@@ -385,8 +381,3 @@ def start_in_group(client):
     group = apps.get(wm_class, None)
     if group:
         client.togroup(group)
-
-# restart qtile on screen layout change (xrandr)
-@hook.subscribe.screen_change
-def restart_on_randr(ev):
-    libqtile.qtile.cmd_restart()
