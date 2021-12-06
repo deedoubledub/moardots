@@ -209,7 +209,7 @@ def mpris():
         status = ''
     return metadata + status
 
-def play_toggle(qtile):
+def play_toggle():
     qtile.cmd_spawn('playerctl play-pause')
 
 def weather():
