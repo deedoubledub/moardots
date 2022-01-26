@@ -17,15 +17,5 @@ else
   exit 1
 fi
 
-# set a flag to prevent multiple triggers
-touch /tmp/dock_change
-
-sleep 1
-
-if [[ -f /tmp/dock_change ]]; then
-  # clear the flag to only run this once
-  rm /tmp/dock_change
-
-  # set xrandr layout
-  /run/wrappers/bin/su $user -c "/home/$user/.config/qtile/xrandr/$layout.sh"
-fi
+# set xrandr layout
+/run/wrappers/bin/su $user -c "/home/$user/.config/qtile/xrandr/$layout.sh"
