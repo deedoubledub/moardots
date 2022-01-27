@@ -69,7 +69,7 @@ keys = [
     # lockscreen
     Key([super], "l", lazy.spawn([os.path.expanduser('~/.local/bin/lock.sh')])),
 
-    # restart qtile  -- BUG: crashes qtile in v0.18.1
+    # restart qtile  -- BUG: crashes qtile in v1.18.1
     # lazy.reload_config will be available in v0.18.2
     #Key([mod, "shift"], "r", lazy.restart()),
 
@@ -183,7 +183,7 @@ layouts = [
 # widget default config
 widget_defaults = dict(
     font='RobotoMono Nerd Font',
-    fontsize=14,
+    fontsize=22,
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
@@ -224,8 +224,8 @@ def weather():
 def separator(foreground='', background=''):
     return widget.TextBox(
         text='\uE0BA',
-        width=28,
-        fontsize=55,
+        width=42,
+        fontsize=65,
         padding=-21,
         foreground=foreground,
         background=background,
@@ -242,7 +242,6 @@ def primary_bar():
             widget.GroupBox(
                 padding_x=10,
                 spacing=5,
-                fontsize=20,
                 disable_drag=True,
                 use_mouse_wheel=False,
                 background=palette[1],
@@ -264,7 +263,7 @@ def primary_bar():
                                mouse_callbacks={'Button1': play_toggle}),
             separator(palette[10], palette[1]),
             widget.Systray(background=palette[10],
-                           icon_size=24,
+                           icon_size=32,
                            padding=10),
             separator(palette[9], palette[10]),
             widget.GenPollText(func=weather,
@@ -272,26 +271,17 @@ def primary_bar():
                                mouse_callbacks={'Button1': weather},
                                background=palette[9]),
             separator(palette[10], palette[9]),
-            #widget.GenPollText(func=memory_usage,
-            #                   update_interval=1,
-            #                   background=palette[10]),
-            #separator(palette[9], palette[10]),
-            #widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
-            #separator(palette[10], palette[9]),
-            widget.TextBox(text='\uF027', fontsize=25, background=palette[10]),
-            widget.Volume(step=5,
+            # widget.GenPollText(func=memory_usage,
+            #                    update_interval=1,
+            #                    background=palette[10]),
+            # separator(palette[9], palette[10]),
+            # widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
+            # separator(palette[10], palette[9]),
+             widget.TextBox(text='\uF027', background=palette[10]),
+             widget.Volume(step=5,
                           background=palette[10]),
             separator(palette[9], palette[10]),
             widget.Battery(battery=1,
-                           format='{char} {percent:2.0%}',
-                           charge_char='\uF583',
-                           discharge_char='\uF57D',
-                           full_char='\uF578',
-                           empty_char='\uF58D',
-                           unknown_char='\uF578',
-                           update_interval=1,
-                           background=palette[9]),
-            widget.Battery(battery=0,
                            format='{char} {percent:2.0%}',
                            charge_char='\uF583',
                            discharge_char='\uF57D',
@@ -308,7 +298,7 @@ def primary_bar():
             widget.Clock(format='\uF017 %I:%M %p', background=palette[9]),
             separator(palette[1], palette[9]),
         ],
-        size=28,
+        size=36,
         background=palette[1],
     )
 
