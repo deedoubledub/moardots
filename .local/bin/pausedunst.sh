@@ -2,4 +2,4 @@
 # suspends dunst notifications
 
 # pause dunst
-killall -SIGUSR1 dunst
+dunstctl set-paused true
