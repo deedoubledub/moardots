@@ -2,13 +2,13 @@
 # updates NixOS
 
 # update channels
-sudo nix-channel --update
+sudo nix-channel --update && \
 
 # rebuild using git-managed configuration
-sudo nixos-rebuild switch -I nixos-config=/home/dwagner/git/nixos/configuration.nix
+sudo nixos-rebuild switch -I nixos-config=/home/dwagner/git/nixos/configuration.nix && \
 
 # delete old generations
-sudo nix-env --delete-generations +5
+sudo nix-env --delete-generations +5 && \
 
 # collect garbage
 sudo nix-store --gc
