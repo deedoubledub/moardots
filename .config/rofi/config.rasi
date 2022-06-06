@@ -3,6 +3,7 @@ configuration {
 	font: "RobotoMono Nerd Font 18";
 	show-icons: true;
 	sort: true;
-	theme: "nord";
 	display-drun: "run";
 }
+
+@theme "nord"
