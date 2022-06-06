@@ -69,9 +69,8 @@ keys = [
     # lockscreen
     Key([super], "l", lazy.spawn([os.path.expanduser('~/.local/bin/lock.sh')])),
 
-    # restart qtile  -- BUG: crashes qtile in v1.18.1
-    # lazy.reload_config will be available in v0.18.2
-    #Key([mod, "shift"], "r", lazy.restart()),
+    # restart qtile
+    Key([mod, "shift"], "r", lazy.restart()),
 
     # quit qtile
     Key([mod, "shift"], "Escape", lazy.shutdown()),
