@@ -5,7 +5,7 @@ user=dwagner
 if [[ "$ACTION" == "add"  ]]; then
   # dock
   logger -t DOCK "laptop docked"
-  layout=framedocked
+  layout=docked
 
 elif [[ "$ACTION" == "remove" ]]; then
   # undock

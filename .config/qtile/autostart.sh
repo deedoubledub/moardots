@@ -2,7 +2,7 @@
 
 # set xrandr layout
 if lsusb | grep -q 05e3:0620; then
-  # autoselect framedocked layout when docked
+  # autoselect docked layout when docked
   ~/.config/qtile/xrandr/docked.sh
 else
   # use auto as a fallback
