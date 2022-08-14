@@ -12,3 +12,6 @@ sudo nix-env --delete-generations +5 && \
 
 # collect garbage
 sudo nix-store --gc
+
+# report on /boot
+df -h | grep /boot
