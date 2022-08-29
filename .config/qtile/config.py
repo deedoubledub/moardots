@@ -11,7 +11,7 @@ super = 'mod4'
 terminal = 'alacritty'
 browser = 'firefox'
 fm = 'nautilus'
-music = 'ytmdesktop'
+music = 'ytmdesktop --no-sandbox'
 home = os.path.expanduser('~')
 
 # theme palette
