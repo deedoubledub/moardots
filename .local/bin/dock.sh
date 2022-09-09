@@ -5,7 +5,14 @@ user=dwagner
 if [[ "$ACTION" == "add"  ]]; then
   # dock
   logger -t DOCK "laptop docked"
-  layout=docked
+
+  if [[ "$DOCK" == "work" ]]; then
+    logger -t DOCK "work dock"
+    layout=dock_work
+  elif [[ "$DOCK" == "home" ]]; then
+    logger -t DOCK "home dock"
+    layout=dock_home
+  fi
 
 elif [[ "$ACTION" == "remove" ]]; then
   # undock
