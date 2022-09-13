@@ -9,7 +9,7 @@ then
 fi
 
 curl -L \
-  https://github.com/siderolabs/talos/releases/download/v${VERSION}/talosctl-linux-arm64 \
+  https://github.com/siderolabs/talos/releases/download/v${VERSION}/talosctl-linux-amd64 \
   -o ~/.local/bin/talosctl
 
 chmod 755 ~/.local/bin/talosctl
