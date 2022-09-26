@@ -1,9 +1,14 @@
 [user]
   name  = David Wagner
   email = dwagner86@gmail.com
+	signingKey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCgAgv1LsbLN6ryxA0lg5m7w8vq+dmkUj1mpx/fbqhalqlvHl5NAQmFuGpJV/+Fc8pzA5HlB5MYvq2ZWwag6Ol8GRNBrUYeAwGmNPUOGOZaxPGDp/d3QTwXr/A+CEE3ZIIOOjTqQXLH+j/eIVYbKRRt6ukj0/konFtRN3kECqbwaZMcqEezDhuHgd4fOiOJW6uaKZUxVLzZLBtwKo1xuYD9ge6/i29l0mIWImlABlGp6fv5XBod3tlBGojnOXSV12vCmVqqWjhjQ7EqIZf9+d/ExBT23Zxm3VVHDlIk1g2RkLXcm918RNXrADVFVPp2u5gtLkw7sm7Q3exISmqbMz/x dwagner@frame
 [push]
   default = simple
 [core]
   excludesfile = ~/.config/git/gitignore
 [init]
 	defaultBranch = main
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
