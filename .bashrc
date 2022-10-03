@@ -21,6 +21,7 @@ export PATH=$PATH:~/.local/bin:~/go/bin
 
 # completion
 [[ -f /etc/profile.d/bash_completion.sh ]] && . /etc/profile.d/bash_completion.sh
+[[ -f ~/.talos/completion.bash ]] && . ~/.talos/completion.bash
 
 # set caps-lock as another ctrl
 setxkbmap -option ctrl:nocaps
