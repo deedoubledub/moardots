@@ -223,9 +223,9 @@ def weather():
 def separator(foreground='', background=''):
     return widget.TextBox(
         text='\uE0BA',
-        width=42,
-        fontsize=65,
-        padding=-21,
+        width=36,
+        fontsize=232,
+        padding=-5,
         foreground=foreground,
         background=background,
     );
