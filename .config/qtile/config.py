@@ -127,8 +127,8 @@ group_names = [("1", {'label': "\uF484", 'layout': 'monadtall'}),
                ("2", {'label': "\uF489", 'layout': 'monadtall'}),
                ("3", {'label': "\uF41E", 'layout': 'monadtall'}),
                ("4", {'label': "\uF922", 'layout': 'monadtall'}),
-               ("5", {'label': "\uF879", 'layout': 'monadtall'}),
-               ("6", {'label': "\uF822", 'layout': 'monadtall'})]
+               ("5", {'label': "\uF879", 'layout': 'max'}),
+               ("6", {'label': "\uF822", 'layout': 'max'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
