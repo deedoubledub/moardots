@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Options
-logout=" Logout"
-reboot="累 Reboot"
+logout=" Logout"
+reboot="󱎝 Reboot"
 shutdown=" Shutdown"
 options="$logout|$reboot|$shutdown"
 

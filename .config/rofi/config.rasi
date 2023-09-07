@@ -1,6 +1,6 @@
 configuration {
 	modi: "drun";
-	font: "RobotoMono Nerd Font 18";
+	font: "RobotoMono 18";
 	show-icons: true;
 	sort: true;
 	display-drun: "run";

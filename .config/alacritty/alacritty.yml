@@ -10,16 +10,16 @@ window:
 
 font:
   normal:
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     style: Regular
   bold:
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     style: Bold
   italic:
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     style: Italic
   bold_italic:
-    family: RobotoMono Nerd Font
+    family: RobotoMono
     style: Bold Italic
   size: 11.0
 

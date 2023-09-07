@@ -1,5 +1,5 @@
 configuration {
-    font:       "RobotoMono Nerd Font 18";
+    font:       "RobotoMono 18";
     show-icons: false;
 }
 

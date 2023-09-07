@@ -125,10 +125,10 @@ keys = [
 # workspace names
 group_names = [("1", {'label': "\uF484", 'layout': 'monadtall'}),
                ("2", {'label': "\uF489", 'layout': 'monadtall'}),
-               ("3", {'label': "\uF41E", 'layout': 'monadtall'}),
-               ("4", {'label': "\uF922", 'layout': 'monadtall'}),
-               ("5", {'label': "\uF879", 'layout': 'max'}),
-               ("6", {'label': "\uF822", 'layout': 'max'})]
+               ("3", {'label': "\uF006", 'layout': 'monadtall'}),
+               ("4", {'label': "\uF292", 'layout': 'monadtall'}),
+               ("5", {'label': "\uF26C", 'layout': 'max'}),
+               ("6", {'label': "\uF109", 'layout': 'max'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -181,7 +181,7 @@ layouts = [
 
 # widget default config
 widget_defaults = dict(
-    font='RobotoMono Nerd Font',
+    font='RobotoMono',
     fontsize=22,
     padding=3,
 )
@@ -223,9 +223,9 @@ def weather():
 def separator(foreground='', background=''):
     return widget.TextBox(
         text='\uE0BA',
-        width=36,
-        fontsize=232,
-        padding=-5,
+        width=32,
+        fontsize=96,
+        padding=-10,
         foreground=foreground,
         background=background,
     );
@@ -239,7 +239,7 @@ def primary_bar():
                 scale=0.66,
             ),
             widget.GroupBox(
-                padding_x=10,
+                padding_x=15,
                 spacing=5,
                 disable_drag=True,
                 use_mouse_wheel=False,
@@ -253,9 +253,10 @@ def primary_bar():
                 other_screen_border=palette[10],
             ),
             widget.CurrentScreen(active_color=palette[14],
-                                 active_text='\uF62E',
+                                 active_text='\uF111',
                                  inactive_color=palette[11],
-                                 inactive_text='\uF62F'),
+                                 inactive_text='\uF1DB',
+                                 padding=10),
             widget.WindowName(for_current_screen=True),
             widget.GenPollText(func=mpris,
                                update_interval=1,
@@ -270,27 +271,21 @@ def primary_bar():
                                mouse_callbacks={'Button1': weather},
                                background=palette[9]),
             separator(palette[10], palette[9]),
-            # widget.GenPollText(func=memory_usage,
-            #                    update_interval=1,
-            #                    background=palette[10]),
-            # separator(palette[9], palette[10]),
-            # widget.CPU(format='\uF9C4 {load_percent}%', background=palette[9]),
-            # separator(palette[10], palette[9]),
              widget.TextBox(text='\uF027', background=palette[10]),
              widget.Volume(step=5,
                           background=palette[10]),
             separator(palette[9], palette[10]),
             widget.Battery(battery=1,
-                           format='{char} {percent:2.0%}',
-                           charge_char='\uF583',
-                           discharge_char='\uF57D',
-                           full_char='\uF578',
-                           empty_char='\uF58D',
-                           unknown_char='\uF578',
+                           format='{char}  {percent:2.0%}',
+                           charge_char='\uF1E6',
+                           discharge_char='\uF242',
+                           full_char='\uF240',
+                           empty_char='\uF244',
+                           unknown_char='\uF128',
                            update_interval=1,
                            background=palette[9]),
             separator(palette[10], palette[9]),
-            widget.Clock(format='\uF5ED %a %b %d',
+            widget.Clock(format='\uF133  %a %b %d',
                          background=palette[10],
                          mouse_callbacks={'Button1': open_calendar}),
             separator(palette[9], palette[10]),
