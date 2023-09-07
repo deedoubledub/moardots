@@ -123,12 +123,12 @@ keys = [
 
 # workspaces
 # workspace names
-group_names = [("1", {'label': "\uF484", 'layout': 'monadtall'}),
-               ("2", {'label': "\uF489", 'layout': 'monadtall'}),
-               ("3", {'label': "\uF006", 'layout': 'monadtall'}),
-               ("4", {'label': "\uF292", 'layout': 'monadtall'}),
-               ("5", {'label': "\uF26C", 'layout': 'max'}),
-               ("6", {'label': "\uF109", 'layout': 'max'})]
+group_names = [("1", {'label': "󰲠", 'layout': 'monadtall'}),
+               ("2", {'label': "󰲢", 'layout': 'monadtall'}),
+               ("3", {'label': "󰲤", 'layout': 'monadtall'}),
+               ("4", {'label': "󰲦", 'layout': 'monadtall'}),
+               ("5", {'label': "󰲨", 'layout': 'max'}),
+               ("6", {'label': "󰲪", 'layout': 'max'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -239,8 +239,8 @@ def primary_bar():
                 scale=0.66,
             ),
             widget.GroupBox(
+                fontsize=26,
                 padding_x=15,
-                spacing=5,
                 disable_drag=True,
                 use_mouse_wheel=False,
                 background=palette[1],
