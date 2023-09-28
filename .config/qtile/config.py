@@ -281,7 +281,7 @@ def primary_bar():
                            discharge_char='\uF242',
                            full_char='\uF240',
                            empty_char='\uF244',
-                           unknown_char='\uF128',
+                           unknown_char='\uF1E6',
                            update_interval=1,
                            background=palette[9]),
             separator(palette[10], palette[9]),
