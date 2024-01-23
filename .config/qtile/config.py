@@ -102,18 +102,17 @@ keys = [
     Key(["control"], "grave", lazy.spawn('dunstctl history-pop')),
 
     # media keys
-    Key([], "XF86AudioLowerVolume", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume down'))),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume up'))),
-    Key([], "XF86AudioMute", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume mute'))),
-    Key([], "XF86AudioMicMute", lazy.spawn('pactl set-source-mute 1 toggle')),
+    Key([], "XF86AudioLowerVolume", lazy.spawn('wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-')),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn('wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+')),
+    Key([], "XF86AudioMute", lazy.spawn('wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle')),
     Key([], "XF86AudioPlay", lazy.spawn('playerctl play-pause')),
     Key([], "XF86AudioStop", lazy.spawn('playerctl stop')),
     Key([], "XF86AudioNext", lazy.spawn('playerctl next')),
     Key([], "XF86AudioPrev", lazy.spawn('playerctl previous')),
     # alternate media keys
-    Key([mod], "F9", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume down'))),
-    Key([mod], "F10", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume up'))),
-    Key([mod], "F11", lazy.spawn(os.path.expanduser('~/.local/bin/pavolume mute'))),
+    Key([mod], "F9", lazy.spawn('wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-')),
+    Key([mod], "F10", lazy.spawn('wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+')),
+    Key([mod], "F11", lazy.spawn('wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle')),
     Key([mod], "F12", lazy.spawn('playerctl play-pause')),
 
     # laptop screen brightness
