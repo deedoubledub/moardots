@@ -210,14 +210,6 @@ def mpris():
 def play_toggle():
     qtile.cmd_spawn('playerctl play-pause')
 
-def weather():
-    wttr=subprocess.run(['curl', 'wttr.in?format=%c%t'],
-                          capture_output=True,
-                          text=True).stdout.strip('\n')
-    if "Unknown" in wttr or wttr == '':
-        wttr = '\uF0C2 '
-    return wttr
-
 # widget separators
 def separator(foreground='', background=''):
     return widget.TextBox(
@@ -251,12 +243,7 @@ def primary_bar():
                 this_screen_border=palette[10],
                 other_screen_border=palette[10],
             ),
-            widget.CurrentScreen(active_color=palette[14],
-                                 active_text='\uF111',
-                                 inactive_color=palette[11],
-                                 inactive_text='\uF1DB',
-                                 padding=10),
-            widget.WindowName(for_current_screen=True),
+            widget.Spacer(length=bar.STRETCH),
             widget.GenPollText(func=mpris,
                                update_interval=1,
                                mouse_callbacks={'Button1': play_toggle}),
@@ -265,13 +252,12 @@ def primary_bar():
                            icon_size=32,
                            padding=10),
             separator(palette[9], palette[10]),
-            widget.GenPollText(func=weather,
-                               update_interval=1200,
-                               mouse_callbacks={'Button1': weather},
-                               background=palette[9]),
+            widget.Wttr(background=palette[9],
+                        format='%c%t',
+                        units='u'),
             separator(palette[10], palette[9]),
-             widget.TextBox(text='\uF027', background=palette[10]),
-             widget.Volume(step=5,
+            widget.TextBox(text='\uF027', background=palette[10]),
+            widget.Volume(step=5,
                           background=palette[10]),
             separator(palette[9], palette[10]),
             widget.Battery(battery=1,
