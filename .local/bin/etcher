@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
+# start polkit authentication agent (gnome)
+/nix/store/$(ls -la /nix/store | grep polkit-gnome | grep '^d' | awk '{print $9}')/libexec/polkit-gnome-authentication-agent-1 &
+
+# start etcher in nix-shell
 export NIXPKGS_ALLOW_INSECURE=1
-nix-shell -p etcher --command 'sudo etcher --no-sandbox'
+nix-shell -p etcher --command etcher
