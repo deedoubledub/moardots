@@ -35,6 +35,9 @@ set incsearch          " incremental search while typing query
 set ignorecase         " ignore case while searching
 set smartcase          " override ignorecase if upper case character is used
 
+" clipboard
+set clipboard=unnamed  " y and p interact with primary
+
 " disable comments continuing to next line
 autocmd BufNewFile,BufWinEnter * setlocal formatoptions-=cro
 
