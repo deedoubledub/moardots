@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-# start polkit authentication agent (gnome)
-#/nix/store/$(ls -la /nix/store | grep polkit-gnome | grep '^d' | awk '{print $9}')/libexec/polkit-gnome-authentication-agent-1 &
+if [ "$1" == "" ]; then
+  echo "usage: $0 <input_file> <disk_path>"
+  echo "example: $0 image.iso /dev/sdd"
+  exit
+fi
 
-# start etcher in nix-shell
-#export NIXPKGS_ALLOW_INSECURE=1
-#nix-shell -p etcher --command 'etcher --no-sandbox'
-
-echo 'etcher is always broken :('
-echo 'just run:'
-echo 'sudo dd if=<input> of=<disk> bs=1M status=progress'
+pv -tpreb $1 | dd of=$2 bs=1M
