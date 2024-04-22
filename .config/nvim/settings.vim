@@ -1,8 +1,9 @@
 " general
 set termguicolors      " enable truecolor
-syntax enable          " enable syntax hightligting
+syntax enable          " enable syntax highlighting
 set nowrap             " disable word wrapping long lines
 set iskeyword+=-       " treat dash separated words as a single word
+set scrolloff=10       " always show 10 lines below cursor
 
 " tabs
 set tabstop=2	         " set tab width to 2

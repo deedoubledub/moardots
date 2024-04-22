@@ -11,7 +11,7 @@ if [[ "$ACTION" == "add"  ]]; then
     layout=dock_work
   elif [[ "$DOCK" == "home" ]]; then
     logger -t DOCK "home dock"
-    layout=dock_home_single_screen
+    layout=dock_home
   fi
 
 elif [[ "$ACTION" == "remove" ]]; then
