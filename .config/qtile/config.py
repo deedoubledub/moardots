@@ -1,10 +1,12 @@
 from libqtile.config import Key, Screen, Group, ScratchPad, DropDown, Drag, Click, Match
 from libqtile.lazy import lazy
+from libqtile.log_utils import logger
 from libqtile import layout, bar, widget, hook, qtile
-from typing import List  # noqa: F401
+from typing import List
 import os
 import subprocess
 import psutil
+import asyncio
 
 mod = 'mod1'
 super = 'mod4'
@@ -59,8 +61,8 @@ keys = [
     # lockscreen
     Key([super], "l", lazy.spawn([os.path.expanduser('~/.local/bin/lock.sh')])),
 
-    # restart qtile
-    Key([mod, "shift"], "r", lazy.restart()),
+    # reload qtile config
+    Key([mod, "shift"], "r", lazy.reload_config()),
 
     # quit qtile
     Key([mod, "shift"], "Escape", lazy.shutdown()),
@@ -109,49 +111,6 @@ keys = [
     Key([], "XF86MonBrightnessUp", lazy.spawn('light -A 10')),
     Key([], "XF86MonBrightnessDown", lazy.spawn('light -U 10')),
 ]
-
-# workspaces
-# workspace names
-group_names = [("1", {'label': "󰲠", 'layout': 'monadtall'}),
-               ("2", {'label': "󰲢", 'layout': 'monadtall'}),
-               ("3", {'label': "󰲤", 'layout': 'monadtall'}),
-               ("4", {'label': "󰲦", 'layout': 'monadtall'}),
-               ("5", {'label': "󰲨", 'layout': 'max'}),
-               ("6", {'label': "󰲪", 'layout': 'max'})]
-
-groups = [Group(name, **kwargs) for name, kwargs in group_names]
-
-# helper function to pin workspaces to screens
-# https://github.com/qtile/qtile/issues/1271#issuecomment-458107043
-def go_to_group(group):
-    def f(qtile):
-        # workspaces 1-4 on primary screen
-        if group in '1234':
-            qtile.cmd_to_screen(0)
-            qtile.groups_map[group].cmd_toscreen(toggle=False)
-        # workspace 5 on secondary screen
-        elif group in '5':
-            qtile.cmd_to_screen(2)
-            qtile.groups_map[group].cmd_toscreen(toggle=False)
-        # workspace 6 on laptop screen
-        else:
-            qtile.cmd_to_screen(1)
-            qtile.groups_map[group].cmd_toscreen(toggle=False)
-    return f
-
-# workspace keybinds
-for i, (name, kwargs) in enumerate(group_names, 1):
-    # switch workspaces
-    # workspaces 1-4 on primary screen, 5+ on secondary screen
-    keys.append(Key([mod], str(i), lazy.function(go_to_group(name))))
-    # send window to workspace
-    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
-
-# dropdown scratchpad terminal
-groups.append(ScratchPad("scratchpad", [
-    DropDown("term", terminal),
-]))
-keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
 
 # layouts
 layout_theme = {
@@ -274,9 +233,56 @@ def primary_bar():
 # screens
 screens = [
     Screen(top=primary_bar()),
-    Screen(),
-    Screen(),
 ]
+
+# TODO: set these based on actual screen layout
+primary_screen   = 0
+secondary_screen = 2
+laptop_screen    = 1
+
+# workspaces
+# workspace names
+group_names = [("1", {'label': "󰲠", 'layout': 'monadtall', 'screen_affinity': primary_screen}),
+               ("2", {'label': "󰲢", 'layout': 'monadtall', 'screen_affinity': primary_screen}),
+               ("3", {'label': "󰲤", 'layout': 'monadtall', 'screen_affinity': primary_screen}),
+               ("4", {'label': "󰲦", 'layout': 'monadtall', 'screen_affinity': primary_screen}),
+               ("5", {'label': "󰲨", 'layout': 'max', 'screen_affinity': secondary_screen})]
+
+group_names.append(("6", {'label': "󰲪", 'layout': 'max', 'screen_affinity': laptop_screen}))
+
+groups = [Group(name, **kwargs) for name, kwargs in group_names]
+
+# helper function to pin workspaces to screens
+def go_to_group(group):
+    def f(qtile):
+        if len(qtile.screens) == 1:
+            qtile.groups_map[group].toscreen()
+            return
+
+        if group in '1234':
+            qtile.focus_screen(primary_screen)
+            qtile.groups_map[group].toscreen()
+        elif group in '5':
+            qtile.focus_screen(secondary_screen)
+            qtile.groups_map[group].toscreen()
+        else:
+            qtile.focus_screen(laptop_screen)
+            qtile.groups_map[group].toscreen()
+
+    return f
+
+# workspace keybinds
+for i, (name, kwargs) in enumerate(group_names, 1):
+    # switch workspaces
+    keys.append(Key([mod], str(i), lazy.function(go_to_group(name))))
+    # send window to workspace
+    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
+
+# dropdown scratchpad terminal
+groups.append(ScratchPad("scratchpad", [
+    DropDown("term", terminal),
+]))
+keys.append(Key([mod], "grave", lazy.group['scratchpad'].dropdown_toggle('term')))
 
 # mod + left click-drag, set floating
 # mod + right click-drag, resize
@@ -318,10 +324,13 @@ wmname = "LG3D"
 def start_once():
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
-# xrandr layout change
-@hook.subscribe.screen_change
-def randr_change(qtile):
-    # rescale wallpaper
+@hook.subscribe.screens_reconfigured
+async def screen_reconf():
+    logger.warning("Screens reconfigured")
+    await asyncio.sleep(2)
+    logger.warning("Reloading config...")
+    qtile.reload_config()
+    # re-scale wallpaper
     subprocess.call([home + '/.fehbg'])
 
 # start app in group
