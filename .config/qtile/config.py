@@ -141,7 +141,7 @@ def memory_usage():
     return '\uF2DB {:02.0f}%'.format(mem.used / mem.total * 100)
 
 def open_calendar():
-    qtile.cmd_spawn('gsimplecal')
+    qtile.spawn('gsimplecal')
 
 def mpris():
     status=subprocess.run(['playerctl',  '-p', 'youtubemusic', 'status'], capture_output=True,
@@ -157,7 +157,7 @@ def mpris():
     return metadata + status
 
 def play_toggle():
-    qtile.cmd_spawn('playerctl play-pause')
+    qtile.spawn('playerctl play-pause')
 
 # widget separators
 def separator(foreground='', background=''):
@@ -248,6 +248,7 @@ group_names = [("1", {'label': "󰲠", 'layout': 'monadtall', 'screen_affinity':
                ("4", {'label': "󰲦", 'layout': 'monadtall', 'screen_affinity': primary_screen}),
                ("5", {'label': "󰲨", 'layout': 'max', 'screen_affinity': secondary_screen})]
 
+# TODO: only add this in 3 screen layout
 group_names.append(("6", {'label': "󰲪", 'layout': 'max', 'screen_affinity': laptop_screen}))
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
