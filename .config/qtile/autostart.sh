@@ -17,3 +17,4 @@ nm-applet &
 blueman-applet &
 dunst &
 discord &
+flameshot &
