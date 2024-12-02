@@ -11,7 +11,7 @@ sudo nixos-rebuild switch -I nixos-config=/home/dwagner/git/nixos/configuration.
 sudo nix-env --delete-generations +5 && \
 
 # collect garbage
-sudo nix-store --gc
+sudo nix-store --gc && \
 
 # report on /boot
 df -h | grep /boot
