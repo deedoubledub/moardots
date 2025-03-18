@@ -5,6 +5,7 @@
 export EDITOR=nvim
 export TERMINAL=alacritty
 export PATH=$PATH:~/.local/bin:~/go/bin
+export PASSWORD_STORE_DIR=~/git/homelab/secrets
 
 #- - - - - - - - - - - - - - - - - - -#
 #                             general #
