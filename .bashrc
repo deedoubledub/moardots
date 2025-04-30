@@ -8,6 +8,8 @@ export PATH=$PATH:~/.local/bin:~/git/puppet/pupperware/eyaml
 export PASSWORD_STORE_DIR=~/git/homelab/secrets
 export RESTIC_REPOSITORY=rest:https://backups.deedoubledub.com
 export RESTIC_PASSWORD=`pass show RESTIC`
+export RESTIC_REST_USERNAME=dwagner
+export RESTIC_REST_PASSWORD=`pass show RESTIC_AUTH`
 
 #- - - - - - - - - - - - - - - - - - -#
 #                             general #
