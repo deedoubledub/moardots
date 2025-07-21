@@ -129,7 +129,7 @@ layouts = [
 
 # widget default config
 widget_defaults = dict(
-    font='RobotoMono',
+    font='RobotoMono Nerd Font',
     fontsize=22,
     padding=3,
 )

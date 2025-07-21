@@ -54,7 +54,7 @@
 #telnet_args=
 #terminal=xterm
 #terminal_allow_send_events=-xrm '*.VT100.allowSendEvents:true'
-terminal_args=-fa "RobotoMono" -fs 11
+terminal_args=-fa "RobotoMono Nerd Font" -fs 11
 #terminal_bg_style=dark
 #terminal_colorize=1
 #terminal_decoration_height=10

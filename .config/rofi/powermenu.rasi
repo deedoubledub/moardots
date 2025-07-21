@@ -1,5 +1,5 @@
 configuration {
-    font:       "RobotoMono 18";
+    font:       "RobotoMono Nerd Font 18";
     show-icons: false;
 }
 
@@ -18,7 +18,7 @@ window {
     background-color:   @background;
     text-color:         @foreground;
     width:              300px;
-    height:             370px;
+    height:             385px;
     x-offset:           0;
     y-offset:           0;
 }
