@@ -92,6 +92,7 @@ keys = [
     Key(["control"], "space", lazy.spawn('dunstctl close')),
     Key(["control", "shift"], "space", lazy.spawn('dunstctl close-all')),
     Key(["control"], "grave", lazy.spawn('dunstctl history-pop')),
+    Key(["control", "shift"], "grave", lazy.spawn('dunstctl set-paused toggle')),
 
     # media keys
     Key([], "XF86AudioLowerVolume", lazy.spawn('wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-')),
