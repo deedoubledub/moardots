@@ -15,6 +15,7 @@ fi
 # start applications
 nm-applet &
 blueman-applet &
+indicator-sound-switcher &
 dunst &
 discord &
 flameshot &
