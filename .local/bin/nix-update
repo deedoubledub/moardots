@@ -8,7 +8,7 @@ sudo nix-channel --update && \
 sudo nixos-rebuild switch -I nixos-config=/home/dwagner/git/nixos/configuration.nix && \
 
 # delete old generations
-sudo nix-collect-garbage --delete-older-than 30d
+sudo nix-collect-garbage --delete-older-than 30d && \
 
 # collect garbage
-sudo nix-store --gc && \
+sudo nix-store --gc
