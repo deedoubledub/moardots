@@ -11,6 +11,8 @@ action="$(echo "$options" | rofi -sep '|' -dmenu -i -p '' -theme ~/.config/rofi/
 case $action in
   $logout)
     qtile cmd-obj -o cmd -f shutdown
+    sleep 5
+    kill -9 `pgrep qtile`
     ;;
   $reboot)
     systemctl reboot
