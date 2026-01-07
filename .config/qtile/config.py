@@ -13,7 +13,7 @@ super = 'mod4'
 terminal = 'alacritty'
 browser = 'firefox'
 fm = 'nautilus'
-music = 'ytmdesktop --no-sandbox'
+music = 'feishin'
 home = os.path.expanduser('~')
 
 # theme palette
@@ -145,9 +145,9 @@ def open_calendar():
     qtile.spawn('gsimplecal')
 
 def mpris():
-    status=subprocess.run(['playerctl',  '-p', 'youtubemusic', 'status'], capture_output=True,
+    status=subprocess.run(['playerctl',  '-p', 'Feishin', 'status'], capture_output=True,
                           text=True).stdout.strip('\n')
-    metadata=subprocess.run(['playerctl', '-p', 'youtubemusic', 'metadata', '--format', '{{artist}} - {{title}}'],
+    metadata=subprocess.run(['playerctl', '-p', 'Feishin', 'metadata', '--format', '{{artist}} - {{title}}'],
                             capture_output=True, text=True).stdout.strip('\n')
     if status == 'Playing':
         status = ' \uF04B'
@@ -342,7 +342,7 @@ async def screen_reconf():
 def start_in_group(client):
     # 'wm_class': 'group_name'
     apps = {'discord': '5',
-            'youtube-music-desktop-app': '6',
+            'feishin': '6',
             'xterm': '2',
             'XTerm': '2',
             'Cssh': '2',
