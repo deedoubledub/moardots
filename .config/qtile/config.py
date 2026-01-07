@@ -175,7 +175,8 @@ def separator(foreground='', background=''):
 def primary_bar():
     return bar.Bar(
         widgets=[
-            widget.CurrentLayoutIcon(
+            widget.CurrentLayout(
+                mode='icon',
                 custom_icon_paths=[os.path.expanduser('~/.config/qtile/icons')],
                 scale=0.66,
             ),
@@ -332,8 +333,6 @@ def start_once():
 async def screen_reconf():
     logger.warning("Screens reconfigured")
     await asyncio.sleep(2)
-    logger.warning("Reloading config...")
-    qtile.reload_config()
     # re-scale wallpaper
     subprocess.call([home + '/.fehbg'])
 
