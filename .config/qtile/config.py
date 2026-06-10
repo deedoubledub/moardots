@@ -109,8 +109,8 @@ keys = [
     Key([mod], "F12", lazy.spawn('playerctl play-pause')),
 
     # laptop screen brightness
-    Key([], "XF86MonBrightnessUp", lazy.spawn('light -A 10')),
-    Key([], "XF86MonBrightnessDown", lazy.spawn('light -U 10')),
+    Key([], "XF86MonBrightnessUp", lazy.spawn('brightnessctl set 5%+')),
+    Key([], "XF86MonBrightnessDown", lazy.spawn('brightnessctl set 5%-')),
 ]
 
 # layouts
