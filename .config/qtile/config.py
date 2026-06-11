@@ -165,8 +165,7 @@ def separator(foreground='', background=''):
     return widget.TextBox(
         text='\uE0BA',
         width=32,
-        fontsize=96,
-        padding=-10,
+        fontsize=80,
         foreground=foreground,
         background=background,
     );
